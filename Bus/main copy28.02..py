@@ -4,26 +4,43 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 
+## uv run fastapi dev
+
+#################################
+#### Defintion Endpoints (Day 1)
+#################################
+
+app = FastAPI()
+@app.get("/")
+def root():
+    return {"message": "Hello World"}
+
+@app.get("/name/{name}") # wenn jemand ne anfrage stellt und die startet mit Name/{name}= frei definierbar (z.b Lisa) wählt funktion aus
+def get_name(name: str):
+    return {"message": f"Hello {name}"} # gibt zurück Hello Lisa
+
+@app.get("/alter/{alter}") # wenn jemand ne anfrage stellt und die startet mit Name/{name}= frei definierbar (z.b Lisa) wählt funktion aus
+def get_alter(alter: int):
+    return {"message": f"in einen Jahr bist du {alter+1}"} # gibt zurück Hello Lisa
+
 app = FastAPI(
-    title="Angewandte Programmierung Kurs",
-    description="Simple note management API",
+    title="Angewante Programmierung Kurs",
+    description="Simple note managment API",
     version="1.0",
 )
 
 #################################
-#### Note API Endpoints (Day 2 & Task 1)
+#### Note API Endpoints (Day 2)
 #################################
 
 class NoteCreate(BaseModel): # was wir von der API erwarten, erbt von BaseModel
     title: str
     content: str
-    category: str # ← Task 1: Kategorie hinzugefügt
 
 class Note(NoteCreate): # was wir zurückgeben wollen, erbt von NoteCreate
     id: int
     title: str
     content: str
-    category: str # ← Task 1: Kategorie hinzugefügt
     created_at: str
 
 NOTES_FILE = Path("data/notes.json")
@@ -43,6 +60,7 @@ def load_notes():
                 note_id_counter = max(note.id for note in notes_db) + 1
 
     return notes_db, note_id_counter
+
 
 def save_notes(notes_db): # schreibt die daten raus
     """Save notes to JSON file after each change"""
@@ -64,7 +82,6 @@ def create_note(note: NoteCreate) -> Note:
         id=note_id_counter,
         title=note.title,
         content=note.content,
-        category=note.category, # ← Task 1: Kategorie wird jetzt mitgespeichert
         created_at=datetime.now(timezone.utc).isoformat() # aktuelle Zeit in UTC formatieren
     )
 
@@ -77,75 +94,9 @@ def create_note(note: NoteCreate) -> Note:
 #### Get Notes  (Day 2)
 #################################
 
+
 @app.get("/notes") # wenn jemand eine GET Anfrage an /notes sendet, wird die Funktion get_notes aufgerufen
 def get_notes() -> list[Note]:
     """Get all notes"""
     notes_db, _ = load_notes() # Notizen laden, wir brauchen nur die Notizen, nicht den ID Counter
     return notes_db # Notizen an Client zurückgeben
-
-
-##################################################################
-#### NEUE AUFGABEN (Step 10 & Part 4 Homework & Bonus)
-##################################################################
-
-# --- Step 10: GET specific note by ID ---
-@app.get("/notes/{note_id}")
-def get_note(note_id: int):
-    """Get a specific note by ID"""
-    notes_db, _ = load_notes()
-    
-    for note in notes_db:
-        if note.id == note_id:
-            return note
-    
-    # Not found - raise 404 error
-    raise HTTPException(
-        status_code=404,
-        detail=f"Note with ID {note_id} not found"
-    )
-
-# --- Task 2: Filter Notes by Category ---
-@app.get("/notes/category/{category}")
-def get_notes_by_category(category: str):
-    """Get all notes in a specific category"""
-    notes_db, _ = load_notes()
-    filtered_notes = []
-    
-    for note in notes_db:
-        if note.category == category:
-            filtered_notes.append(note)
-    
-    return filtered_notes
-
-# --- Task 3: Add Statistics Endpoint ---
-@app.get("/notes/stats")
-def get_notes_stats():
-    """Get statistics about notes"""
-    notes_db, _ = load_notes()
-    
-    # Count by category
-    categories = {}
-    for note in notes_db:
-        if note.category in categories:
-            categories[note.category] += 1
-        else:
-            categories[note.category] = 1
-    
-    return {
-        "total_notes": len(notes_db),
-        "by_category": categories
-    }
-
-# --- Bonus Challenge: Add DELETE endpoint ---
-@app.delete("/notes/{note_id}")
-def delete_note(note_id: int):
-    """Delete a note by ID"""
-    notes_db, _ = load_notes()
-    
-    for i, note in enumerate(notes_db):
-        if note.id == note_id:
-            notes_db.pop(i)  # Notiz aus der Liste entfernen
-            save_notes(notes_db)  # Geänderte Liste speichern
-            return {"message": "Note deleted"}
-    
-    raise HTTPException(status_code=404, detail="Note not found")
