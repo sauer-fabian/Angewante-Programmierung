@@ -3,14 +3,6 @@ from pydantic import BaseModel
 from datetime import datetime, timezone
 import json
 from pathlib import Path
-from collections import Counter
-from typing import Optional
-
-from fastapi import FastAPI, HTTPException, Depends
-from pydantic import BaseModel
-from datetime import datetime
-from typing import Annotated, Optional
-from sqlmodel import SQLModel, Field, Session, create_engine, Relationship, select, or_, col
 
 # run server
 # uv run fastapi dev
@@ -58,22 +50,16 @@ class Note(NoteCreate): # was wir zurückgeben wollen, erbt von NoteCreate
     tags: list[str] = [] # Tags hinzugefügt, Standardwert ist eine leere Liste
     created_at: str
 
-class NoteUpdate(BaseModel): # alle Felder optinal, da man bei Patch nicht alles mitschicken muss
-    title: Optional[str] = None
-    content: Optional[str] = None
-    category: Optional[str] = None
-    tags: Optional[list[str]] = None
-
- NOTES_FILE = Path("data/notes.json") # Storage
- notes_db = []
- note_id_counter = 1
+NOTES_FILE = Path("data/notes.json") # Storage
+notes_db = []
+note_id_counter = 1
 
 def load_notes(): # file funktion
     """Load notes from JSON file"""
     global notes_db, note_id_counter
 
-  if NOTES_FILE.exists():
-       with open(NOTES_FILE, 'r') as f:
+    if NOTES_FILE.exists():
+        with open(NOTES_FILE, 'r') as f:
             data = json.load(f)
             # FIX: Falls alte Notizen keine Kategorie haben, wird hier "default" gesetzt (wie bei deiner Freundin)
             notes_db = [
@@ -133,7 +119,7 @@ def create_note(note: NoteCreate) -> Note:
     return new_note # neue Notiz an Client zurückgeben
 
 ##############################################################################
-#### (Get Notes  (Day 2)) Endpunkte  (Day 3) + GET/PUT/DELETET/ hinzufügen
+#### Get Notes  (Day 2) Endpunkt ersetzen (Day 3) + GET/PUT/DELETET/ hinzufügen
 #############################################################################
 
 #@app.get("/notes") # wenn jemand eine GET Anfrage an /notes sendet, wird die Funktion get_notes aufgerufen
@@ -147,9 +133,7 @@ def create_note(note: NoteCreate) -> Note:
 def list_notes(
     category: str = None,
     search: str = None,
-    tag: str = None,
-    created_after: str = None,
-    created_before: str = None
+    tag: str = None
 ) -> list[Note]:
     
     filtered = []
@@ -165,13 +149,6 @@ def list_notes(
                 continue
         
         if tag and tag not in note.tags:
-            continue
-        
-        # Neue Datums-Filter
-        if created_after and note.created_at < created_after:
-            continue
-            
-        if created_before and note.created_at > created_before:
             continue
         
         filtered.append(note)
@@ -214,27 +191,6 @@ def delete_note(note_id: int):
         status_code=404,
         detail=f"Note with ID {note_id} not found"
     )
-
-@app.patch("/notes/{note_id}")
-def partial_update_note(note_id: int, note_update: NoteUpdate) -> Note:
-    
-    for i, note in enumerate(notes_db):
-        if note.id == note_id:
-            
-            if note_update.title is not None:
-                note.title = note_update.title
-            if note_update.content is not None:
-                note.content = note_update.content
-            if note_update.category is not None:
-                note.category = note_update.category
-            if note_update.tags is not None:
-                note.tags = note_update.tags
-            
-            notes_db[i] = note
-            save_notes()
-            return note
-    
-    raise HTTPException(status_code=404, detail="Note not found")
 
 ##################################################################
 #### Tags hinzufügen (Day 3)
@@ -320,58 +276,3 @@ def get_notes_by_tag(tag_name: str) -> list[Note]:
             return {"message": "Note deleted"}
     
     raise HTTPException(status_code=404, detail="Note not found")
-
-@app.get("/notes/stats")
-def get_notes_stats():
-    
-    # Kategorien zählen
-    categories = {}
-    for note in notes_db:
-        if note.category in categories:
-            categories[note.category] += 1
-        else:
-            categories[note.category] = 1
-    
-    # Alle Tags in eine Liste packen
-    all_tags = []
-    for note in notes_db:
-        for tag in note.tags:
-            all_tags.append(tag)
-    
-    # Tags zählen
-    tag_counts = Counter(all_tags)
-    
-    # Die 5 häufigsten Tags aussortieren
-    top_5_tags = []
-    for tag, count in tag_counts.most_common(5):
-        top_5_tags.append({"tag": tag, "count": count})
-        
-    # Anzahl aller verschiedenen Tags ermitteln
-    unique_tags = len(tag_counts)
-    
-    return {
-        "total_notes": len(notes_db),
-        "by_category": categories,
-        "top_tags": top_5_tags,
-        "unique_tags_count": unique_tags
-    }
-
-
-@app.get("/categories")
-def list_categories() -> list[str]:
-    
-    all_categories = set()
-    for note in notes_db:
-        all_categories.add(note.category)
-    
-    return sorted(list(all_categories))
-
-@app.get("/categories/{category_name}/notes")
-def get_notes_by_category(category_name: str) -> list[Note]:
-    
-    filtered = []
-    for note in notes_db:
-        if note.category == category_name:
-            filtered.append(note)
-    
-    return filtered

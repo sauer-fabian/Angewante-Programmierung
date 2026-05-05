@@ -610,6 +610,9 @@ def list_notes():
 
 ---
 
+# from here homework
+### endpunkt um einzelne notizen einbauen 
+
 ## Step 10: Create GET /notes/{note_id}
 
 **Get specific note by ID:**
