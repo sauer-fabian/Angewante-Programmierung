@@ -248,12 +248,21 @@ einzeltest starten
 uv run pytest test-day. py :: test_is_adult_boundery_18 # 
 
 kleinen test anfangen, 
+
+workflow;
+erst einen externe file aufbauen, um zu testen, ob es funktioniert 
+
+wie man die tests startet 
+ uv run pytest test_main.py  
+ wie man sie sieht 
+  uv run pytest test_main.py -v
 ---
 
 #### 2. 🚧 What challenges did I face?
 
 rausgefunden das create_engine ausgegraut ist 
 
+den code zum laufen lassen
 
 
 
@@ -263,7 +272,7 @@ rausgefunden das create_engine ausgegraut ist
 
 ki gefrag wie fixen 
 
-
+ki gefragt wie man test und 
 
 
 
@@ -273,25 +282,25 @@ ki gefrag wie fixen
 
 #### 1. ✅ What did I accomplish?
 
-
-
-
-
+grundlagen von programierung
+- arten von daten (float,integer...)
+- was ist github (gibt auch varianten)
+- was sidn standartberiffe (Def, print..)
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
+unstrukturierter daten aufbau
 
-
-
+edge tests 
 
 
 ---
 
 #### 3. 💡 How did I overcome them?
 
-
+neues main.py aus unterricht und selbstarbeit übernommen 
 
 
 
