@@ -1,29 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import SQLModel, Session, create_engine
-from sqlmodel.pool import StaticPool
+from Bus.main_05_05_Terminal import app # Hier 'main' durch den Namen deiner Datei ersetzen
 
-# Importiere deine App und die DB-Session-Funktion aus main.py
-from main import app, get_session
-
-# Erstelle eine temporäre Datenbank nur für die Tests im Arbeitsspeicher
-sqlite_url = "sqlite://"
-engine = create_engine(sqlite_url, connect_args={"check_same_thread": False}, poolclass=StaticPool)
-
-def get_test_session():
-    with Session(engine) as session:
-        yield session
-
-# Überschreibe die normale Datenbank-Verbindung mit der Test-Datenbank
-app.dependency_overrides[get_session] = get_test_session
 client = TestClient(app)
-
-@pytest.fixture(autouse=True)
-def setup_db():
-    """Erstellt vor jedem Test frische Tabellen und löscht sie danach."""
-    SQLModel.metadata.create_all(engine)
-    yield
-    SQLModel.metadata.drop_all(engine)
 
 
 #################################

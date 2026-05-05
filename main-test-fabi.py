@@ -1,116 +1,59 @@
-from fastapi import FastAPI, HTTPException, Depends
-from pydantic import BaseModel
-from datetime import datetime, timezone
-from typing import Annotated, Optional
-from sqlmodel import SQLModel, Field, Session, create_engine, Relationship, select, or_, col
-from collections import Counter
+import pytest
+from fastapi.testclient import TestClient
+from Bus.main_05_05_Terminal import app # Hier 'main' durch den Namen deiner Datei ersetzen
 
-# Server starten mit:
-# uv run fastapi dev
+client = TestClient(app)
 
-app = FastAPI(
-    title="Angewandte Programmierung Kurs",
-    description="Einfache Notiz-Verwaltung API",
-    version="1.0",
-)
+def test_status_404():
+    """1. Test: Nicht existierende Seite aufrufen"""
+    response = client.get("/nicht-da")
+    assert response.status_code == 404
 
-#################################
-#### Datenbank Setup
-#################################
+def test_get_all_notes():
+    """2. Test: Liste aller Notizen abrufen"""
+    response = client.get("/notes")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
 
-class NoteTagLink(SQLModel, table=True):
-    __tablename__ = 'notelink'
-    note_id: Optional[int] = Field(default=None, foreign_key="notes.id", primary_key=True)
-    tag_id: Optional[int] = Field(default=None, foreign_key="tags.id", primary_key=True)
+def test_create_simple_note():
+    """3. Test: Eine einfache Notiz anlegen"""
+    payload = {"title": "Test", "content": "Text", "category": "Test", "tags": []}
+    response = client.post("/notes", json=payload)
+    assert response.status_code == 201
 
-class Note(SQLModel, table=True):
-    __tablename__ = 'notes'
-    id: Optional[int] = Field(default=None, primary_key=True)
-    title: str
-    content: str
-    category: str
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    tags: list["Tag"] = Relationship(back_populates="notes", link_model=NoteTagLink)
+def test_create_note_with_tags():
+    """4. Test: Notiz mit Tags anlegen"""
+    payload = {"title": "Tag-Test", "content": "Inhalt", "category": "Arbeit", "tags": ["wichtig"]}
+    response = client.post("/notes", json=payload)
+    assert response.status_code == 201
+    assert "wichtig" in response.json()["tags"]
 
-class Tag(SQLModel, table=True):
-    __tablename__ = 'tags'
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str = Field(unique=True, index=True)
-    notes: list[Note] = Relationship(back_populates="tags", link_model=NoteTagLink)
+def test_check_notes_list():
+    """5. Test: Abrufen der Notizen-Liste nach Erstellung"""
+    response = client.get("/notes")
+    assert response.status_code == 200
 
-engine = create_engine("sqlite:///notes.db")
-SQLModel.metadata.create_all(engine)
+def test_delete_wrong_id():
+    """6. Test: Löschen einer ID, die nicht existiert"""
+    response = client.delete("/notes/9999")
+    assert response.status_code == 404
 
-def get_session():
-    with Session(engine) as session:
-        yield session
+def test_create_and_delete_specific():
+    """
+    7. Test: Notiz ANLEGEN
+    8. Test: Genau diese Notiz LÖSCHEN
+    """
+    # Schritt 7: Anlegen
+    payload = {"title": "Lösch-Test", "content": "Weg damit", "category": "Temp", "tags": []}
+    create_res = client.post("/notes", json=payload)
+    note_id = create_res.json()["id"]
+    assert create_res.status_code == 201
 
-SessionDep = Annotated[Session, Depends(get_session)]
+    # Schritt 8: Genau dieses Objekt wieder löschen
+    del_res = client.delete(f"/notes/{note_id}")
+    assert del_res.status_code == 204
 
-#################################
-#### Daten-Modelle
-#################################
-
-class NoteCreate(BaseModel): 
-    title: str
-    content: str
-    category: str 
-    tags: list[str] = []
-
-class NoteResponse(BaseModel): 
-    id: int
-    title: str
-    content: str
-    category: str 
-    tags: list[str]
-    created_at: datetime
-    
-    class Config:
-        from_attributes = True
-
-#################################
-#### Endpunkte
-#################################
-
-@app.post("/notes", status_code=201, response_model=NoteResponse)
-def create_note(note: NoteCreate, session: SessionDep):
-    """Erstellt eine neue Notiz"""
-    db_note = Note(
-        title=note.title,
-        content=note.content,
-        category=note.category
-    )
-    
-    tag_objects = []
-    for tag_name in note.tags:
-        tag_name_lower = tag_name.lower().strip()
-        statement = select(Tag).where(Tag.name == tag_name_lower)
-        existing_tag = session.exec(statement).first()
-        
-        if existing_tag:
-            tag_objects.append(existing_tag)
-        else:
-            new_tag = Tag(name=tag_name_lower)
-            session.add(new_tag)
-            tag_objects.append(new_tag)
-    
-    db_note.tags = tag_objects
-    session.add(db_note)
-    session.commit()
-    session.refresh(db_note)
-    return db_note
-
-@app.get("/notes", response_model=list[NoteResponse])
-def list_notes(session: SessionDep):
-    """Zeigt alle Notizen"""
-    return session.exec(select(Note)).all()
-
-@app.delete("/notes/{note_id}", status_code=204)
-def delete_note(note_id: int, session: SessionDep):
-    """Löscht eine Notiz über die ID"""
-    db_note = session.get(Note, note_id)
-    if not db_note:
-        raise HTTPException(status_code=404, detail="Notiz nicht gefunden")
-    session.delete(db_note)
-    session.commit()
-    return
+    # Prüfen, ob ID weg ist
+    check = client.get("/notes")
+    ids = [n["id"] for n in check.json()]
+    assert note_id not in ids
