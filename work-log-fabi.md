@@ -256,6 +256,17 @@ wie man die tests startet
  uv run pytest test_main.py  
  wie man sie sieht 
   uv run pytest test_main.py -v
+
+Die Klassen NoteCreate und Note prüfen, ob die Daten, die reinkommen, korrekt sind (z. B. ob der Titel ein Text ist).
+
+Mit load_notes() und save_notes() schreibst du alles in die notes.json. So sind deine Notizen nicht weg, wenn du den Server ausschaltest.
+
+POST /notes: Erstellt eine Notiz, gibt ihr eine ID und speichert sie.  
+GET /notes: Listet alle gespeicherten Notizen auf.  
+GET /notes/{id}: Sucht eine ganz bestimmte Notiz raus.  
+
+
+
 ---
 
 #### 2. 🚧 What challenges did I face?
@@ -287,6 +298,19 @@ grundlagen von programierung
 - was ist github (gibt auch varianten)
 - was sidn standartberiffe (Def, print..)
 
+wie validiere ich richtig:
+
+art und weiße wie man ein datum  eingibt, wird geläst in bag end. Geb: "YYYY-MM-DD" so passt 
+
+front end macht es wie es passiert 
+
+
+- ✅ Use `Field(...)` constraints fluently
+- ✅ Write `field_validator` and `model_validator` functions
+- ✅ Choose between Optional, default, and required
+- ✅ Read and explain Pydantic 422 error responses
+- ✅ Tighten loose models so bad data is rejected at the door
+
 ---
 
 #### 2. 🚧 What challenges did I face?
@@ -294,6 +318,17 @@ grundlagen von programierung
 unstrukturierter daten aufbau
 
 edge tests 
+
+hausaufgabe
+modelle spezifisieren 
+titellänge begränzen 
+titel inhalt spezifisieren (teilenumbrüche verhindern)
+eigene test erweitern, -> grenzfälle testen 
+    reject short title 
+    unnohen categrien...
+
+
+
 
 
 ---
