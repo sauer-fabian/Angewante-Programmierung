@@ -328,16 +328,18 @@ eigene test erweitern, -> grenzfälle testen
     unnohen categrien...
 
 
+lange nicht gemerkt, das ich uv add email-validator installieren muss
 
 
-
+internatal serverer errer, probleme mit derr ntoes.json datei
 ---
 
 #### 3. 💡 How did I overcome them?
-
+uv add email-validator installiert im terminal
 neues main.py aus unterricht und selbstarbeit übernommen 
 
 
+notes.json gelöscht, wurde neu erstellt hat geklappt
 
 
 ---

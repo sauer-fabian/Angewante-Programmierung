@@ -5,10 +5,7 @@ import json
 from pathlib import Path
 from typing import Optional
 from typing_extensions import Self
-from datetime import date
-from pydantic import BaseModel, Field, field_validator
 
-# FastAPI Instanz erstellen - Der Einstiegspunkt unserer API
 app = FastAPI(title="Notiz API - Bulletproof Version", version="1.0.0")
 
 # --- MODELLE ---
@@ -16,29 +13,27 @@ app = FastAPI(title="Notiz API - Bulletproof Version", version="1.0.0")
 class NoteCreate(BaseModel):
     # Schritt D: Konfiguration (Strippen & Extra-Felder verbieten)
     model_config = ConfigDict(
-        str_strip_whitespace=True, # Entfernt automatisch Leerzeichen vorne/hinten
-        extra="forbid"             # Verhindert, dass User unbekannte Felder mitschicken
+        str_strip_whitespace=True, 
+        extra="forbid"
     )
 
     # Schritt A: Felder mit harten Regeln
-    # Field(...) definiert Validierung direkt am Attribut (Länge, Standardwerte)
     title: str = Field(min_length=3, max_length=100)
     content: str = Field(min_length=1, max_length=10000)
     category: str = Field(min_length=2, max_length=30)
     tags: list[str] = Field(default_factory=list, max_length=10)
-    # EmailStr prüft automatisch auf korrektes E-Mail Format (@ etc.)
+    # Dein E-Mail Feld
     author_email: EmailStr = Field(description="E-Mail des Erstellers")
 
     # Schritt B: Kategorie & Tags säubern
     @field_validator("category")
     @classmethod
     def category_lowercase(cls, v: str) -> str:
-        return v.lower() # Macht Eingaben einheitlich klein
+        return v.lower()
 
     @field_validator("tags")
     @classmethod
     def clean_tags(cls, raw_tags: list[str]) -> list[str]:
-        # Logik um Duplikate zu entfernen und Leer-Tags zu verhindern
         saubere_tags = []
         gesehene = set()
         for tag in raw_tags:
@@ -50,15 +45,13 @@ class NoteCreate(BaseModel):
                 gesehene.add(t)
         return saubere_tags
 
-    # Schritt C: Cross-Field Logik (Abhängigkeit zwischen zwei Feldern prüfen)
+    # Schritt C: Cross-Field Logik (Kategorie 'work' braucht Tag 'work')
     @model_validator(mode="after")
     def check_work_tag(self) -> Self:
-        # Prüft Kombination: Wenn Kategorie X, dann muss Tag Y da sein
         if self.category == "work" and "work" not in self.tags:
             raise ValueError("Arbeits-Notizen brauchen zwingend den Tag 'work'.")
         return self
 
-# Vererbung: Note hat alles von NoteCreate + ID und Zeitstempel
 class Note(NoteCreate):
     id: int
     created_at: str
@@ -67,36 +60,33 @@ class Note(NoteCreate):
 NOTES_FILE = Path("notes.json")
 
 def load_notes():
-    # Lädt Daten aus JSON und wandelt sie in Pydantic-Objekte um
     if not NOTES_FILE.exists():
         return [], 1
     with open(NOTES_FILE, "r") as f:
         data = json.load(f)
-        notes = [Note(**n) for n in data] # Entpacken der Dicts in das Modell
+        notes = [Note(**n) for n in data]
         counter = max([n.id for n in notes], default=0) + 1
         return notes, counter
 
 def save_notes(notes):
-    # Speichert Objekte als sauberes JSON-Format ab
     with open(NOTES_FILE, "w") as f:
         json.dump([n.model_dump() for n in notes], f, indent=2)
 
 # --- ENDPUNKTE ---
 
-@app.post("/notes", status_code=201) # 201 = Created
+@app.post("/notes", status_code=201)
 def create_note(note_in: NoteCreate):
     notes, counter = load_notes()
-    # Neues Objekt erstellen und validierte Daten (note_in) reinmischen
     new_note = Note(
         id=counter,
         created_at=datetime.now().isoformat(),
-        **note_in.model_dump() # Packt alle Felder aus NoteCreate hier rein
+        **note_in.model_dump()
     )
     notes.append(new_note)
     save_notes(notes)
     return new_note
 
-@app.get("/notes") # Standard-Abfrage aller Notizen
+@app.get("/notes")
 def list_notes():
     notes, _ = load_notes()
     return notes
