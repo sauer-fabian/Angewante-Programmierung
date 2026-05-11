@@ -348,6 +348,7 @@ notes.json gelöscht, wurde neu erstellt hat geklappt
 
 #### 1. ✅ What did I accomplish?
 
+gelernt das mein code noch nicht gut genung ist
 
 
 
@@ -357,18 +358,55 @@ notes.json gelöscht, wurde neu erstellt hat geklappt
 
 #### 2. 🚧 What challenges did I face?
 
+20 faild 11 passed 97 errors
 
+Fehlermeldung:
+"msg":"Field required","loc":["body","author_email"]
+(API erwartet im "Body" (also in den Daten, die geschickt werden) ein Feld namens author_email. Die Test-Suite schickt dieses Feld aber nicht mit.)
 
+"msg":"Value error, Arbeits-Notizen brauchen zwingend den Tag 'work'."
+Die Test-Suite erstellt aber Notizen mit der Kategorie "work", nutzt aber andere Tags (z. B. "sample", "test" oder "spaced"). Dein Code blockt das mit einem Fehler 422 ab, aber die Test-Suite erwartet Erfolg (201).
 
+ Fehler  404 
 
+Fehler durch reihnfolge 
+
+405 fehler, fastAPI findet den pfad /notes/{note_id} aber gibt dort keine funkton mit der methode put 
+
+findet top tags nciht gut 
+
+zu kurze tags werden angenommen 
+
+created_after und created_before lehnt keine ungültigen daten bisher ab
+
+list_notes datum führt zum absturz
 
 ---
 
 #### 3. 💡 How did I overcome them?
 
+erst mal author email optional gemacht
 
+@model_validator raus hauen
 
+Root-Endpunkt hinzufügen 
+(keinen Endpunkt für @app.get("/") hast. Die Test-Suite erwartet dort eine Antwort.)
 
+bei get notes filter logig hinzufüge nmit if 
+
+endpunkte aus tag 3 wieder hinzufuügen 
+
+405 fehelr: endpunkt mit put hinzufügen für /notes/{note_id}
+
+nutzen collections.Counter, um die Top-Tags leicht zu finden:
+
+tag feld aktuallisieren
+
+Typ in der Funktion von str auf date ändern. FastAPI validiert das Datum dann automatisch nach ISO-Standard.
+
+nehme str um sie als text zu vergleichen, damit iso strings sortierbar sind.
+
+bei 12 faild aufgehört
 
 
 ---
