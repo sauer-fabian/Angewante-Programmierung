@@ -434,7 +434,9 @@ Die Test-Suite erstellt aber Notizen mit der Kategorie "work", nutzt aber andere
 
 #### 1. ✅ What did I accomplish?
 
+streamlit installiert
 
+streamlit benutzt UTF-8-Kodierung, somit sämtliche sprachen und zeichen
 
 
 
