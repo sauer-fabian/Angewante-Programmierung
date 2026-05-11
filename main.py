@@ -155,22 +155,42 @@ def create_note(note_in: NoteCreate):
     save_notes(notes)
     return new_note
 
-@app.get("/notes") # Standard-Abfrage aller Notizen
+# WICHTIG: Stelle sicher, dass "datetime" oben importiert ist!
+from datetime import datetime
+@app.get("/notes")
 def list_notes(
     category: Optional[str] = None,
     tag: Optional[str] = None,
     search: Optional[str] = None,
-    created_after: Optional[str] = None, # Wieder auf str ändern
-    created_before: Optional[str] = None
+    created_after: Optional[datetime] = None,
+    created_before: Optional[datetime] = None
 ):
     notes, _ = load_notes()
     filtered = notes
-    # ... Filter für category, tag, search ...
 
+    # 1. Filter nach Kategorie
+    if category:
+        # Wir filtern die Liste und behalten nur Notizen mit dieser Kategorie
+        filtered = [n for n in filtered if n.category.lower() == category.lower()]
+    
+    # 2. Filter nach Tag
+    if tag:
+        # Behalte nur Notizen, bei denen der gesuchte Tag in der Liste n.tags vorkommt
+        filtered = [n for n in filtered if tag.lower() in [t.lower() for t in n.tags]]
+
+    # 3. Suche in Titel ODER Inhalt
+    if search:
+        s = search.lower()
+        filtered = [n for n in filtered if s in n.title.lower() or s in n.content.lower()]
+
+    # 4. Datumsfilter
     if created_after:
-        filtered = [n for n in filtered if n.created_at >= created_after]
+        # Wir wandeln den Zeitstempel der Notiz in ein datetime Objekt um zum Vergleich
+        filtered = [n for n in filtered if datetime.fromisoformat(n.created_at) >= created_after]
+    
     if created_before:
-        filtered = [n for n in filtered if n.created_at <= created_before]
+        filtered = [n for n in filtered if datetime.fromisoformat(n.created_at) <= created_before]
+
     return filtered
 
 @app.get("/")

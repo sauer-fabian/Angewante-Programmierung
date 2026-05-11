@@ -358,56 +358,73 @@ gelernt das mein code noch nicht gut genung ist
 
 #### 2. 🚧 What challenges did I face?
 
-20 faild 11 passed 97 errors
+1. 20 faild 11 passed 97 errors
 
-Fehlermeldung:
+2. Fehlermeldung:
 "msg":"Field required","loc":["body","author_email"]
 (API erwartet im "Body" (also in den Daten, die geschickt werden) ein Feld namens author_email. Die Test-Suite schickt dieses Feld aber nicht mit.)
 
-"msg":"Value error, Arbeits-Notizen brauchen zwingend den Tag 'work'."
+3. "msg":"Value error, Arbeits-Notizen brauchen zwingend den Tag 'work'."
 Die Test-Suite erstellt aber Notizen mit der Kategorie "work", nutzt aber andere Tags (z. B. "sample", "test" oder "spaced"). Dein Code blockt das mit einem Fehler 422 ab, aber die Test-Suite erwartet Erfolg (201).
 
- Fehler  404 
+4.  Fehler  404 
 
-Fehler durch reihnfolge 
+5. Fehler durch reihnfolge 
 
-405 fehler, fastAPI findet den pfad /notes/{note_id} aber gibt dort keine funkton mit der methode put 
+6. 405 fehler, fastAPI findet den pfad /notes/{note_id} aber gibt dort keine funkton mit der methode put 
 
-findet top tags nciht gut 
+7. findet top tags nciht gut 
 
-zu kurze tags werden angenommen 
+8. zu kurze tags werden angenommen 
 
-created_after und created_before lehnt keine ungültigen daten bisher ab
+9. created_after und created_before lehnt keine ungültigen daten bisher ab
 
-list_notes datum führt zum absturz
+10. list_notes datum führt zum absturz
 
+11. Die Tests finden die Endpunkte /categories/... und /tags/... nicht.
+
+12. API anwortet mit 201 (Erfolg), aber der Test erwartet 422, weil 11 Tags zu viele sind.
+
+13. alle 70 tests wurden gescipped
+
+14. Status 200 filtert noch nnicht richtig
+
+15. Test schickt ein absichtlich falsches Datum (wie 2026-13-01 oder den Text not-a-date) und erwartet, dass deine API das mit einem Fehler 422 ablehnt.
 ---
 
 #### 3. 💡 How did I overcome them?
 
-erst mal author email optional gemacht
+1. erst mal author email optional gemacht
 
-@model_validator raus hauen
+2. @model_validator raus hauen
 
-Root-Endpunkt hinzufügen 
+3. Root-Endpunkt hinzufügen 
 (keinen Endpunkt für @app.get("/") hast. Die Test-Suite erwartet dort eine Antwort.)
 
-bei get notes filter logig hinzufüge nmit if 
+4. bei get notes filter logig hinzufüge nmit if 
 
-endpunkte aus tag 3 wieder hinzufuügen 
+5. endpunkte aus tag 3 wieder hinzufuügen 
 
-405 fehelr: endpunkt mit put hinzufügen für /notes/{note_id}
+6. 405 fehelr: endpunkt mit put hinzufügen für /notes/{note_id}
 
-nutzen collections.Counter, um die Top-Tags leicht zu finden:
+7. nutzen collections.Counter, um die Top-Tags leicht zu finden:
 
-tag feld aktuallisieren
+8. tag feld aktuallisieren
 
-Typ in der Funktion von str auf date ändern. FastAPI validiert das Datum dann automatisch nach ISO-Standard.
+9. Typ in der Funktion von str auf date ändern. FastAPI validiert das Datum dann automatisch nach ISO-Standard.
 
-nehme str um sie als text zu vergleichen, damit iso strings sortierbar sind.
+10. nehme str um sie als text zu vergleichen, damit iso strings sortierbar sind.
 
-bei 12 faild aufgehört
+11. Endpunkte in main.py kopieren
 
+12. max_length Beschränkung
+
+13. Server war nicht erreichbar
+
+
+14. alle Filter (Kategorie, Suche, Tags und Datum) korrekt kombiniert:
+
+15. Änderung  vom Anfang der list_notes Funktion in der main.py
 
 ---
 
