@@ -9,30 +9,26 @@ Instructions: Fill out one log for each course day. Content to consider: Course 
 ---
 
 ## 1. ✅ What did I accomplish?
+Entwicklungsumgebung mit VS Code, Git und dem Package Manager uv vollständig eingerichtet.
 
-_Reflect on the activities, exercises, and work you completed today._
+Unterschied zwischen Git (lokal) und GitHub (Cloud) gelernt und Git-Repository initialisiert.
 
-**Guiding questions:**
-- What topics or concepts did you work with?
-- What exercises or projects did you complete?
-- What tools or technologies did you use?
-- What did you learn or practice?
+Erstes FastAPI-Projekt erstellt und eine „Hello World“-API programmiert.
 
+Interaktive API-Dokumentation unter /docs (Swagger UI) zum Testen der Endpoints genutzt.
+
+Hausaufgabe: Endpoint erstellt, der eine Zahl (Dein Alter) empfängt und um +1 erhöht zurückgibt. (... So alt bist du nächstes Jahr )
 
 
 ---
 
 ## 2. 🚧 What challenges did I face?
 
-_Describe any difficulties, obstacles, or confusing moments you encountered._
+Die Installation von Git auf dem Mac über das Terminal war unübersichtlich.
 
-**Guiding questions:**
-- What was difficult to understand?
-- Where did you get stuck?
-- What errors or problems did you face?
-- What felt frustrating or confusing?
+Homebrew als Paketverwalter kenne ich im Kontext, als ich meinen Nintendo gehacked hatte, um dort Romhacks zu spielen, war verwundert das es auch für Windows etc. gedacht ist.
 
-
+Schwierigkeiten beim Verständnis, wie Server, Browser und die API-Logik zusammenarbeiten.
 
 
 ---
@@ -89,7 +85,7 @@ uv run pytest test_main.py -v einfgefüt
 
 #### 1. ✅ What did I accomplish?
 
-git ignore kennen gelernt 
+git ignore kennen gelernt (sehr wichtig wenn man was nicht funktioniert könnte es daran nicht) 
 
 HTtp 
 kommunikationswege 
@@ -438,21 +434,36 @@ streamlit installiert
 
 streamlit benutzt UTF-8-Kodierung, somit sämtliche sprachen und zeichen
 
+streamlit ist auch gut für schlanke operationen, weil dem team es egal ist, wenn es über java oder phython läuft und einfach erweitert werden kann 
 
+Eine Verbindung zwischen dem Frontend (Streamlit) und dem Backend (FastAPI) hergestellt.  
 
+Die Funktion zum Anzeigen aller gespeicherten Notizen eingebaut.  
+
+Ein Eingabe-Formular erstellt, um neue Notizen an die API zu senden.  
+
+Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
+1. streamlit import schwierigkeiten erst mit pip install probiert nicht funktioniert
 
+2. Fehler zum laufen bringen
 
-
+3. Die API hat Daten abgelehnt, wenn Pflichtfelder im Formular leer waren. 
 
 
 ---
 
 #### 3. 💡 How did I overcome them?
+
+1. uv add... verwendet
+
+2. Mit Kommulitonen abgesprochen
+
+3. Prüfungen im Frontend eingebaut, damit nur vollständige Daten an die API gesendet werden.
 
 
 
@@ -465,16 +476,42 @@ streamlit benutzt UTF-8-Kodierung, somit sämtliche sprachen und zeichen
 
 #### 1. ✅ What did I accomplish?
 
+Datenstruktur aufgebaut 
+
+Git ignore noch mal durchgesprochen, es gibt bei git eine vorgefehrtigte Version, wo die standarts integriert sind, und dann seine extra sachen eingebaut wredne 
+
+Sinnvolle Ordnersturktur kennen gelernt 
 
 
+pyproject.toml dient dazu, Projektabhängigkeiten, Metadaten und Build-Anforderungen zentral zu verwalten, ersetzt veraltete Dateien
 
+README durchgesprochen, .md heißt markdown, das ist verbersserte dokumentation ermöglciht 
+
+README richtig aufbauen:
+wie starten das
+schnipsel
+notiz anlegen
+schmnipsel
+notizen abholen
+
+schnipsel raus kopieren und uv run eingeben (FastAPI) muss runnen
+
+readme files anschauen 
+
+
+Exkurs datascience
+er hat daten bereinigt 
+sotiert 
+im bworsers api. rein gehauen, 
+
+kann jetzt schauen, ob er die datei drin ist. 
 
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
-
+sehr viele Bus erstellt 
 
 
 
@@ -483,6 +520,7 @@ streamlit benutzt UTF-8-Kodierung, somit sämtliche sprachen und zeichen
 
 #### 3. 💡 How did I overcome them?
 
+die richtigen aussotiert
 
 
 
