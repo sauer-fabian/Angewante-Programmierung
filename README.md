@@ -5,16 +5,17 @@ Ein kompaktes Python-Projekt, das eine REST-Schnittstelle (FastAPI) zur struktur
 
 ## Komponenten des Repositories
 
-Die Codebasis gliedert sich in folgende Dateien und Ordner:
+### Dateien:
 
 - `main.py` — Das Anwendungs-Backend: Steuert die FastAPI-Routen, das Datenbank-Setup via SQLModel sowie die SQLite-Integration.
 - `frontend.py` — Das Anwendungs-Frontend: Eine interaktive Streamlit-Oberfläche, um Datensätze im Browser einzusehen und neue Einträge zu erfassen.
 - `notes.db` — Der lokale Datenspeicher: Eine SQLite-Datenbankdatei, die sich beim Erststart selbstständig generiert.
-- `test_notes.py` — Älteres, manuelles Skriptsystem für punktuelle Abfragen während der Entwicklungsphase.
-- `explorationen/` — Archivordner mit früheren Entwürfen und Testdateien aus der Entstehung des Projekts.
-- `bus/` — Lokale Sicherheitskopien und persönliche Backups von Zwischenständen der Arbeit.
-- `presentationen/` — Begleitendes Präsentations- und Anschauungsmaterial zu den einzelnen Kurstagen.
 - `work-log.md` — Persönliches Arbeitsprotokoll zur Dokumentation des Lernfortschritts.
+
+###  Ordner:
+- `explorationen/` — Archivordner mit früheren Entwürfen und Testdateien aus der Entstehung des Projekts.
+- `presentationen/` — Begleitendes Präsentations- und Anschauungsmaterial zu den einzelnen Kurstagen.
+- `bus/` — Lokale Sicherheitskopien und persönliche Backups von Zwischenständen der Arbeit.
 
 ## Systemanforderungen
 
