@@ -8,6 +8,10 @@ from collections import Counter # zählen von Elementen
 import json # Textumwandlung
 from sqlmodel import SQLModel, Field as TypeField, Session, create_engine, select # Für Datenbank 
 
+# --- Erlaubte Kathegorien ---
+
+ALLOWED_CATEGORIES = {"work", "personal", "school", "ideas", "general"}
+
 # API starten
 app = FastAPI(title="Notiz API", version="1.0.0") 
 
@@ -46,6 +50,23 @@ class NoteUpdate(BaseModel):
 
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
 
+    # Kleinbuchstaben erzwingen, falls eine Kategorie geschickt wird
+    @field_validator("category")
+    @classmethod
+    def category_lowercase(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None:
+            return v.lower()
+        return v
+
+    # Gegen die Liste prüfen
+    @field_validator("category")
+    @classmethod
+    def validate_category_selection(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None and v not in ALLOWED_CATEGORIES:
+            raise ValueError(f"Kategorie '{v}' ist nicht erlaubt. Erlaubt sind: {sorted(ALLOWED_CATEGORIES)}")
+        return v
+    
+
 # Modell für POST und PUT (Erstellen und Ersetzen)
 class NoteCreate(BaseModel):
 
@@ -65,6 +86,14 @@ class NoteCreate(BaseModel):
     @classmethod
     def category_lowercase(cls, v: str) -> str:
         return v.lower()
+
+    # Prüfen, ob die Kategorie erlaubt ist
+    @field_validator("category")
+    @classmethod
+    def validate_category_selection(cls, v: str) -> str:
+        if v not in ALLOWED_CATEGORIES:
+            raise ValueError(f"Kategorie '{v}' ist nicht erlaubt. Erlaubt sind: {sorted(ALLOWED_CATEGORIES)}")
+        return v    
 
     # Tags müssten min. aus 2 Zeichen bestehen und Dopplungen werden gelöscht 
     @field_validator("tags")
