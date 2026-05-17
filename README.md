@@ -120,6 +120,22 @@ Navigiere dort zur Route `POST /notes`, aktiviere das Eingabefeld über den Butt
 
 ```
 
+### 3. Abrufen von Notizen über die Schnittstelle (GET-Abfrage)
+Um zu kontrollieren, welche Einträge aktuell in der Datenbank hinterlegt sind, gibt es zwei unkomplizierte Wege, die direkt im Browser ohne das Streamlit-Frontend genutzt werden können:
+
+* **Variante A (Direkt im Browser):** Da es sich um eine Standard-Abrufmethode (`GET`) handelt, kann die Adresse einfach in die Adresszeile des Webbrowsers eingegeben werden. Rufe dazu folgende URL auf, um alle Notizen als JSON-Text anzuzeigen:
+
+```
+
+[http://127.0.0.1:8000/notes](http://127.0.0.1:8000/notes)
+
+```
+
+* **Variante B (Über Swagger UI):**
+Navigiere in der interaktiven Dokumentation (`http://127.0.0.1:8000/docs`) zum blauen Endpunkt `GET /notes` List Notes. Klicke auf **"Try it out"** und anschließend auf den blauen **"Execute"**-Button. Die API liefert daraufhin die Liste aller gespeicherten Notizen im Response-Body zurück.
+
+```
+
 
 ---
 
