@@ -268,21 +268,21 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 
 #### 1. ✅ What did I accomplish?
 
-Grundlagen der Programmierung wiederholt (Datentypen wie Float und Integer, Standardbegriffe wie Def, print).
+- Grundlagen der Programmierung wiederholt (Datentypen wie Float und Integer, Standardbegriffe wie Def, print).
 
-Verstanden, was GitHub ist und dass es verschiedene Varianten davon gibt.
+- Verstanden, was GitHub ist und dass es verschiedene Varianten davon gibt.
 
-Datenvalidierung mit Pydantic tiefgehend behandelt.
+- Datenvalidierung mit Pydantic tiefgehend behandelt.
 
-Gelernt, wie man richtig validiert: Die Art und Weise, wie ein Datum eingegeben wird, wird im Backend gelöst (Format: "YYYY-MM-DD").
+- Gelernt, wie man richtig validiert: Die Art und Weise, wie ein Datum eingegeben wird, wird im Backend gelöst (Format: "YYYY-MM-DD").
 
-Field(...) Constraints für Pydantic-Modelle fließend genutzt.
+- Field(...) Constraints für Pydantic-Modelle fließend genutzt.
 
-Eigene field_validator und model_validator Funktionen geschrieben.
+- Eigene field_validator und model_validator Funktionen geschrieben.
 
-Gelernt, zwischen Optional, Default und Required Feldern zu wählen.
+- Gelernt, zwischen Optional, Default und Required Feldern zu wählen.
 
-Pydantic 422 Error Responses gelesen, verstanden und lose Modelle abgedichtet, damit schlechte Daten direkt abgewiesen werden.
+- Pydantic 422 Error Responses gelesen, verstanden und lose Modelle abgedichtet, damit schlechte Daten direkt abgewiesen werden.
 
 ---
 
@@ -309,17 +309,16 @@ Pydantic 422 Error Responses gelesen, verstanden und lose Modelle abgedichtet, d
 
 #### 1. ✅ What did I accomplish?
 
-Gelernt und eingesehen, dass mein Code noch nicht gut genug und robust genug war.
+- Gelernt und eingesehen, dass mein Code noch nicht gut genug und robust genug war.
 
-Die eigene API gegen eine umfangreiche, fremde externe Test-Suite geprüft.
+- Die eigene API gegen eine umfangreiche, fremde externe Test-Suite geprüft.
 
-Eine eigene Datei class_based_decorator.py erstellt und Python-Decoratoren kennengelernt.
+- Eine eigene Datei class_based_decorator.py erstellt und Python-Decoratoren kennengelernt.
 
-Die Bibliothek icecream für übersichtlicheres und besseres Debugging installiert und genutzt.
+- Die Bibliothek icecream für übersichtlicheres und besseres Debugging installiert und genutzt.
 
-Die API-Logik überarbeitet, t, um die Anforderungen der Tests zu erfüllen (z.B. Root Endpoint hinzugefügt).
----
-Hier ist der aufbereitete Block für **Day 6**. Alle deine Angaben sind inhaltlich vollständig enthalten, kurz und verständlich formuliert und exakt im sachlichen und einfachen Stil des restlichen Dokuments gehalten. Die Herausforderungen und Lösungen passen nun nummeriert perfekt 1-zu-1 zusammen:
+- Die API-Logik überarbeitet, t, um die Anforderungen der Tests zu erfüllen (z.B. Root Endpoint hinzugefügt).
+
 
 ---
 
@@ -365,19 +364,19 @@ Hier ist der aufbereitete Block für **Day 6**. Alle deine Angaben sind inhaltli
 
 ### 1. ✅ What did I accomplish?
 
-Das Frontend-Framework Streamlit erfolgreich installiert.
+- Das Frontend-Framework Streamlit erfolgreich installiert.
 
-Gelernt, dass Streamlit UTF-8-Kodierung nutzt, wodurch sämtliche Sprachen und Sonderzeichen nativ unterstützt werden.
+- Gelernt, dass Streamlit UTF-8-Kodierung nutzt, wodurch sämtliche Sprachen und Sonderzeichen nativ unterstützt werden.
 
-Streamlit als schlanke und performante Möglichkeit kennengelernt, um ohne Java- oder tiefe HTML-Kenntnisse GUIs direkt in Python zu schreiben.
+- Streamlit als schlanke und performante Möglichkeit kennengelernt, um ohne Java- oder tiefe HTML-Kenntnisse GUIs direkt in Python zu schreiben.
 
-Eine funktionierende Verbindung zwischen dem Frontend (Streamlit) und dem Backend (FastAPI) hergestellt.
+- Eine funktionierende Verbindung zwischen dem Frontend (Streamlit) und dem Backend (FastAPI) hergestellt.
 
-Die Funktion zum Anzeigen aller gespeicherten Notizen visuell eingebaut.
+- Die Funktion zum Anzeigen aller gespeicherten Notizen visuell eingebaut.
 
-Ein Eingabe-Formular erstellt, um neue Notizen an die API zu senden.
+- Ein Eingabe-Formular erstellt, um neue Notizen an die API zu senden.
 
-Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
+- Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
 
 ---
 
@@ -415,15 +414,15 @@ Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
 
 #### 1. ✅ What did I accomplish?
 
-Die saubere Datenstruktur und sinnvolle Ordnerstrukturen für das Projekt aufgebaut.
+- Die saubere Datenstruktur und sinnvolle Ordnerstrukturen für das Projekt aufgebaut.
 
-Die .gitignore nochmals durchgesprochen: Gelernt, dass man vorgefertigte Standard-Versionen nutzt und diese manuell erweitert.
+- Die .gitignore nochmals durchgesprochen: Gelernt, dass man vorgefertigte Standard-Versionen nutzt und diese manuell erweitert.
 
-Gelernt, dass pyproject.toml dazu dient, Projektabhängigkeiten, Metadaten und Build-Anforderungen zentral zu verwalten, um veraltete Formate zu ersetzen.
+- Gelernt, dass pyproject.toml dazu dient, Projektabhängigkeiten, Metadaten und Build-Anforderungen zentral zu verwalten, um veraltete Formate zu ersetzen.
 
-Die Struktur einer professionellen README.md (Markdown) erarbeitet: Anleitung zum Starten des Servers, Code-Schnipsel zum Anlegen und Abholen von Notizen.
+- Die Struktur einer professionellen README.md (Markdown) erarbeitet: Anleitung zum Starten des Servers, Code-Schnipsel zum Anlegen und Abholen von Notizen.
 
-Exkurs in Data Science durchgeführt: Daten bereinigt, sortiert und über die API direkt in den Browser geladen.
+- Exkurs in Data Science durchgeführt: Daten bereinigt, sortiert und über die API direkt in den Browser geladen.
 
 ---
 
