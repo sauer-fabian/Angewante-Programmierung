@@ -46,6 +46,13 @@ _Explain how you overcame the challenges or what help you needed._
 
 ---
 
+## Eigene Framework-Erkärung 
+Aufbau des Work Logs: Unter „1. ✅ What did I accomplish?“ erfolgt eine einfache stichpunktartige Aufzählung der Ergebnisse. Die Abschnitte „2. 🚧 What challenges did I face?“ und „3. 💡 How did I overcome them?“ sind durchnummeriert und inhaltlich exakt aufeinander abgestimmt (Problem 1 wird durch Lösung 1 behoben).
+
+## Einsatz von KI
+Zur Lösung von Problemstellungen, zum Verständnis von Fehlermeldungen und zur Code-Anpassung wurden verschiedene KI-Tools (GitHub Copilot, ChatGPT, Google Gemini) genutzt. Im Vergleich hat mich Google Gemini bei meinen Problemen am besten geholfen und wurde daher am häufigsten verwendet.
+
+
 ## Week 1
 
 ### Day 1
@@ -118,9 +125,6 @@ _Explain how you overcame the challenges or what help you needed._
 
 #### 3. 💡 How did I overcome them?
 
-Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen und im code anzupassen
-(Google Gemini hat mich dabei am besten verstanden)
-
 1. Die fehlende Funktion save_notes() im POST-Endpunkt ergänzt, damit die Daten auf der Festplatte gespeichert werden. Die Code-Struktur mit den Vorlesungsbeispielen verglichen und Einrückungsfehler korrigiert.
 
 2. KI genutzt, um die Fehlermeldungen zu analysieren. Eine alte Testnotiz aus der Datei gelöscht, danach funktionierte der Code wieder.
@@ -133,28 +137,29 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 
 #### 1. ✅ What did I accomplish?
 
-- HTTP-Fehlercodes (wie 404 und 500) kennengelernt.
+#### 1. ✅ What did I accomplish?
 
-- Unterschied zwischen Path-Parametern (konkrete Ressource) und Query-Parametern (Filterfunktion) gelernt.
+* HTTP-Fehlercodes (wie 404 und 500) kennengelernt.
 
-- Tags zu den Notizen hinzugefügt.
+* Unterschied zwischen Path-Parametern (für eine konkrete Ressource) und Query-Parametern (als Filterfunktion) gelernt.
 
-- Das Konzept des testbasierten Arbeitens angewendet, um Funktionen automatisiert zu überprüfen.
+* Tags zu den Notizen hinzugefügt.
 
-- Die FastAPI-GUI genutzt, um der KI Spezifikationen zu geben und Tests schreiben zu lassen.
+* Das Konzept des testbasierten Arbeitens angewendet, um Funktionen automatisiert zu überprüfen.
 
-- Die Datenspeicherung von JSON auf eine SQLite-Datenbank umgestellt und eine Many-to-Many-Beziehung über eine Link-Tabelle hergestellt. 
+* Die FastAPI-GUI genutzt, um der KI Spezifikationen zu geben und Tests schreiben zu lassen.
 
-- Prüfungsleistung besser verstanden
+* Die Datenspeicherung von JSON auf eine SQLite-Datenbank umgestellt und eine Many-to-Many-Beziehung über eine Link-Tabelle hergestellt.
 
-- getting shit done (Frame Work), um sehr konkret ein projekt beschreiben um projket zu machen
+* Die Anforderungen der Prüfungsleistung besser verstanden.
 
-- Gelernt wie man die Ki tests schreiben lässt: kreire tests for the following openapi specification store the test in reference impllementation folder use pytest and requests libery 
+* Das Framework "Getting Shit Done" kennengelernt, um ein Projekt sehr konkret zu beschreiben und umzusetzen.
 
-- Das "Resource-Oriented Design" bei REST-APIs verstanden: URLs sollten immer Nomen und keine Verben sein (z. B. /notes statt /getNotes).
+* Gelernt, wie man die KI Tests schreiben lässt, mit dem genauen Prompt: *"Create tests for the following OpenAPI specification. Store the test in the reference implementation folder. Use pytest and requests library."*
 
-- Mehrere Query-Parameter im Code kombiniert, um komplexe Filterungen (z. B. Suche + Kategorie + Tag gleichzeitig) zu ermöglichen.
+* Das "Resource-Oriented Design" bei REST-APIs verstanden: URLs sollten immer Nomen und keine Verben sein (z. B. `/notes` statt `/getNotes`).
 
+* Mehrere Query-Parameter im Code kombiniert, um komplexe Filterungen (z. B. Suche + Kategorie + Tag gleichzeitig) zu ermöglichen.
 ---
 
 #### 2. 🚧 What challenges did I face?
@@ -167,13 +172,11 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 
 4. Die Umstellung von der JSON-Datei auf die SQLite-Datenbank war die größte Aufgabe und erforderte viele Änderungen. Sie verursachte unerklärliche Server-Fehler. Zudem sah die neue Datenbankdatei (`notes.db`) im normalen Code-Editor komplett unleserlich (weird) aus.
 
-5. Es war unklar, wie man absichtliche Fehler (wie einen 404 Not Found oder 422 Validation Error) in der Test-Suite überhaupt richtig und sinnvoll testet.
+5. JSON-Payload-Formatierung in der API (Swagger UI): Ein Versuch, Tags ohne Anführungszeichen (z. B. [rot]) zu übergeben, schlug fehl und wurde vom System nicht akzeptiert.
 
-6. JSON-Payload-Formatierung in der API (Swagger UI): Ein Versuch, Tags ohne Anführungszeichen (z. B. [rot]) zu übergeben, schlug fehl und wurde vom System nicht akzeptiert.
+6. NameError Abstürze im Code: Nach dem Löschen der JSON-Logik stürzte das Programm ab, weil alte Endpunkte noch Variablen wie den note_id_counter suchten. Später trat ein ähnlicher Fehler auf, weil engine nicht definiert war.
 
-7. NameError Abstürze im Code: Nach dem Löschen der JSON-Logik stürzte das Programm ab, weil alte Endpunkte noch Variablen wie den note_id_counter suchten. Später trat ein ähnlicher Fehler auf, weil engine nicht definiert war.
-
-8. Unerklärliche "Internal Server Error" (500) Meldungen beim Erstellen einer Notiz mit Tags in der neuen Datenbank. Die Fehlerursache war im Browser nicht sichtbar, da die Datenbank die Many-to-Many-Beziehung (NoForeignKeysError) ohne ausdrückliche Erklärung im Code nicht verstand.
+7. Unerklärliche "Internal Server Error" (500) Meldungen beim Erstellen einer Notiz mit Tags in der neuen Datenbank. Die Fehlerursache war im Browser nicht sichtbar, da die Datenbank die Many-to-Many-Beziehung (NoForeignKeysError) ohne ausdrückliche Erklärung im Code nicht verstand.
 
 ---
 
@@ -187,13 +190,11 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 
 4. Den SQLite Viewer in VS Code installiert, wodurch die Datenbank leserlich wurde. Die Fehler nach der Datenbank-Migration gesucht und die nötigen neuen Endpunkte für die Datenbank Stück für Stück umgesetzt.
 
-5. Gelernt, dass man im Test gezielt fehlerhafte Daten (z. B. fehlende Pflichtfelder) oder völlig ungültige IDs an die API sendet und dann mit assert response.status_code == 422 bzw. 404 prüft, ob die API den Fehler korrekt abfängt.
+5. Das richtige JSON-Format angewendet: Gelernt, dass Strings innerhalb von Listen in JSON zwingend in doppelte Anführungszeichen gesetzt werden müssen (also ["rot"] statt [rot]).
 
-6. Das richtige JSON-Format angewendet: Gelernt, dass Strings innerhalb von Listen in JSON zwingend in doppelte Anführungszeichen gesetzt werden müssen (also ["rot"] statt [rot]).
+6. Den alten Code komplett durch die neue SQLModel-Logik ersetzt (wodurch IDs von der Datenbank automatisch vergeben werden und der Counter obsolet wurde). Fehlende Werkzeuge wie create_engine am Anfang der Datei in den Import-Bereich hinzugefügt.
 
-7. Den alten Code komplett durch die neue SQLModel-Logik ersetzt (wodurch IDs von der Datenbank automatisch vergeben werden und der Counter obsolet wurde). Fehlende Werkzeuge wie create_engine am Anfang der Datei in den Import-Bereich hinzugefügt.
-
-8. Gelernt, wie man den Stacktrace (Fehlertext) in der Server-Konsole liest, um die Ursache für einen 500er-Fehler zu finden. Das Problem gelöst, indem ich eine explizite Verbindungstabelle (NoteTagLink) als Code definiert und per link_model verknüpft habe. Wichtigstes Learning: Die durch vorherige Fehler korrumpierte notes.db-Datei musste vor dem Server-Neustart komplett gelöscht werden, damit sie sauber neu aufgebaut werden konnte.
+7. Gelernt, wie man den Stacktrace (Fehlertext) in der Server-Konsole liest, um die Ursache für einen 500er-Fehler zu finden. Das Problem gelöst, indem ich eine explizite Verbindungstabelle (NoteTagLink) als Code definiert und per link_model verknüpft habe. Wichtigstes Learning: Die durch vorherige Fehler korrumpierte notes.db-Datei musste vor dem Server-Neustart komplett gelöscht werden, damit sie sauber neu aufgebaut werden konnte.
 
 ## Week 2
 
@@ -202,11 +203,7 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 #### 1. ✅ What did I accomplish?
 
 
-- simple Tests für Beispiel-Endpunkte geschrieben und ausgeführt
-
-- niemmals namen wie paket nennen sonst überschreiben des packets
-
-- fake macht random namen mit verschiedenen Schriften aus verschiedenen Nationlaitäten
+- Simple Tests für Beispiel-Endpunkte geschrieben und die vom Gruppenpartner ausgeführt
 
 - Alle Endpunkte und Grenzfälle getestet
 
@@ -232,35 +229,29 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 
 1. Pytest hat am Anfang überhaupt keine Tests erkannt („0 tests found“), weil die Benennung der Testdateien und Testfunktionen nicht den strengen Namenskonventionen entsprach.
 
-2. Große Unsicherheit beim genauen Aufbau von API-Tests und Schwierigkeiten, realistische Grenzfälle (Error Cases) sauber im Code zu definieren (z. B. wie man ungültige IDs oder negative Altersangaben wie bei `/is-adult/{age}` richtig testet).
+2. Der Befehl `create_engine` wurde im Code-Editor plötzlich ausgegraut dargestellt, was zu Verwirrung führte und auf einen fehlerhaften Import hindeutete.
 
-3. Der Befehl `create_engine` wurde im Code-Editor plötzlich ausgegraut dargestellt, was zu Verwirrung führte und auf einen fehlerhaften Import hindeutete.
+3. Beim Ausführen der Tests mit der `requests`-Bibliothek gab es Verbindungsfehler, weil das Zusammenspiel zwischen den Test-Skripten und der API nicht funktionierte.
 
-4. Beim Ausführen der Tests mit der `requests`-Bibliothek gab es Verbindungsfehler, weil das Zusammenspiel zwischen den Test-Skripten und der API nicht funktionierte.
+4. Nach dem erfolgreichen Durchlauf der Tests zeigte pytest in der Zusammenfassung nur "7 passed" statt der erwarteten 8 Tests an.
 
-5. Nach dem erfolgreichen Durchlauf der Tests zeigte pytest in der Zusammenfassung nur "7 passed" statt der erwarteten 8 Tests an.
+5. Große Verwirrung darüber, wo genau im Code-Editor die Test-Struktur abgelegt werden muss und in welchem spezifischen Terminal-Fenster die Test-Befehle gestartet werden müssen. 
 
-6. Große Verwirrung darüber, wo genau im Code-Editor die Test-Struktur abgelegt werden muss und in welchem spezifischen Terminal-Fenster die Test-Befehle gestartet werden müssen. 
 
-7. Das Terminal zeigte nach dem Testlauf kryptische Deprecated-Warnungen bezüglich der veralteten Pydantic-Klasse class Config innerhalb von NoteResponse an.
-
-8. Die detaillierten Testschritte und überprüften Grenzwerte (wie die generierten ausländischen Namen) waren im Standard-Output des Terminals nicht sichtbar, da pytest standardmäßig nur Punkte (.) ausgibt.
 
 ---
 
 #### 3. 💡 How did I overcome them?
 
 1. Die Dateinamen konsequent in `test_main.py` bzw. `test_day4.py` umbenannt und alle Testfunktionen mit dem Präfix `test_` versehen, damit pytest sie automatisch findet und ausführt.
-2. Die Teststruktur an den Beispielen aus der Präsentation orientiert: Tests strikt so aufgeteilt, dass immer zuerst der Normalfall (Erfolg) und danach gezielt der Fehlerfall (Grenzfall) geprüft wird. Für komplexe Grenzfälle habe ich Schleifen eingebaut und mir Inspiration von einer KI holen und erklären lassen.
-3. KI gefragt, wie der Import-Fehler bei `create_engine` zu beheben ist, ungenutzte Import-Leichen bereinigt und den Code-Aufbau für die Dateipersistenz sauber getrennt.
-4. Den Workflow korrigiert: Verstanden, dass für `requests`-basierte Tests immer zwei Terminals parallel laufen müssen – im ersten Terminal muss die FastAPI mit `uv run fastapi dev` aktiv laufen, bevor im zweiten Terminal die Test-Suite mit `uv run pytest -v` gestartet wird.
-5. Verstanden, dass pytest jede Python-Funktion als genau einen Test zählt. Ich hatte das "Anlegen" und "Löschen" in einer Funktion kombiniert. Durch das Aufteilen in zwei separate Funktionen (test_create_to_delete und test_delete_specific) wurden die vollen 8 Tests sauber durchgezählt.
 
-6. Eine dedizierte Datei test_main.py im exakt selben Root-Verzeichnis angelegt und das integrierte Terminal von VS Code (Strg + ö) genutzt, um sicherzustellen, dass die Befehle im richtigen Projektpfad ausgeführt werden.  
+2. KI gefragt, wie der Import-Fehler bei `create_engine` zu beheben ist, ungenutzte Import-Leichen bereinigt und den Code-Aufbau für die Dateipersistenz sauber getrennt.
 
-7. Mithilfe der Terminal-Fehlermeldung gelernt, dass Pydantic v2.0 das alte class Config nicht mehr empfiehlt und man stattdessen langfristig auf ConfigDict migrieren sollte; die Warnung konnte für den aktuellen Präsentationsstand jedoch ignoriert werden.
+3. Den Workflow korrigiert: Verstanden, dass für `requests`-basierte Tests immer zwei Terminals parallel laufen müssen – im ersten Terminal muss die FastAPI mit `uv run fastapi dev` aktiv laufen, bevor im zweiten Terminal die Test-Suite mit `uv run pytest -v` gestartet wird.
 
-8. Den Test-Befehl im Terminal um das Flag -v (verbose) erweitert (uv run pytest test_main.py -v), wodurch pytest gezwungen wird, jeden Grenzwert-Testnamen und den exakten PASSED-Status transparent untereinander aufzulisten.
+4. Verstanden, dass pytest jede Python-Funktion als genau einen Test zählt. Ich hatte das "Anlegen" und "Löschen" in einer Funktion kombiniert. Durch das Aufteilen in zwei separate Funktionen (test_create_to_delete und test_delete_specific) wurden die vollen 8 Tests sauber durchgezählt.
+
+5. Eine dedizierte Datei test_main.py im exakt selben Root-Verzeichnis angelegt und das integrierte Terminal von VS Code (Strg + ö) genutzt, um sicherzustellen, dass die Befehle im richtigen Projektpfad ausgeführt werden.  
 
 ---
 
@@ -309,9 +300,7 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 
 #### 1. ✅ What did I accomplish?
 
-- Gelernt und eingesehen, dass mein Code noch nicht gut genug und robust genug war.
-
-- Die eigene API gegen eine umfangreiche, fremde externe Test-Suite geprüft.
+- Die eigene API gegen eine fremde externe Test-Suite geprüft.
 
 - Eine eigene Datei class_based_decorator.py erstellt und Python-Decoratoren kennengelernt.
 
@@ -425,37 +414,35 @@ Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen un
 - Exkurs in Data Science durchgeführt: Daten bereinigt, sortiert und über die API direkt in den Browser geladen.
 
 ---
-
 #### 2. 🚧 What challenges did I face?
 
+1. Die Umstrukturierung des Codes und der Speicher-Logik verursachte anfangs viele Bugs.
 
-1. Durch die vielen Umstrukturierungen und Änderungen an der Speicher-Logik wurden im Code sehr viele Bugs (Fehler) produziert.
+2. Beim Wechsel von `notes.json` auf SQLite wurde zunächst eine fehlerhafte Datenbankdatei erzeugt, wodurch die 70 automatisierten Tests abstürzten.
 
-2. Es wurde nicht mehr in der notes.json gespeichert. Die API versuchte, auf eine SQLite-Datenbank zuzugreifen, erstellte jedoch eine fehlerhafte Datenbankdatei, die bei den 70 automatisierten Tests abstürzte.
+3. Die Tests liefen im Hintergrund erfolgreich durch, aber über das Frontend ließen sich anscheinend keine neuen Notizen anlegen.
 
-3. hab mich gewundert, warum die tests funktinieren, aber ich keine Notizen anlegen kann im frontend
+4. Der Backup-Ordner (`bus/`) wurde durch die vielen Zwischenstände extrem unübersichtlich.
 
-4. Dateinen aus Bus (BackUps) waren unübersichtlich
+5. Die exakte Syntax für Code-Highlighting in Markdown (z. B. für `bash` oder `json`) war mir neu, obwohl ich die Formatierungs-Basics aus Obsidian kannte.
 
-5. Die Syntax für die korrekte Auszeichnung von Code-Blöcken im Terminal (wie z.B. für `bash` oder `json`) war mir in dieser Form neu für mich, obwohl ich die grundlegenden Textformatierungen von Markdown bereits aus Obsidian kannte.
-
-6. Anhand der README den code getestet 
+6. Beim Testen anhand meiner eigenen README war anfangs unklar, ob die Daten wirklich korrekt in der Datenbank landen.
 
 ---
 
 #### 3. 💡 How did I overcome them?
 
-1. Den Code systematisch bereinigt, Fehler aussortiert und nur die korrekten, funktionierenden logischen Teile behalten.
+1. Den Code systematisch bereinigt, fehlerhafte Pfade aussortiert und auf die funktionierenden Kernteile reduziert.
 
-2. sqlmodel sauber über das Terminal installiert, den Import from sqlmodel import SQLModel hinzugefügt, die Klassenstruktur angepasst und die alte, fehlerhafte notes.db Datei manuell gelöscht. Beim Neustart generierte sich die Datenbank fehlerfrei neu und bestand die 70 Tests wieder.
+2. `sqlmodel` sauber installiert, den Import hinzugefügt und die kaputte `notes.db` manuell gelöscht. Beim API-Neustart generierte sie sich fehlerfrei und alle Tests bestanden.
 
-3. hat nur eine Minute gedauert bis es in der Datenbank geladen war
+3. Es war lediglich ein kleines Timing-Problem: Nach etwa einer Minute war der Eintrag verarbeitet und in der Datenbank sichtbar.
 
-4. Neu und enheitlich Benennungssystem verwendet
+4. Alte Dateien aufgeräumt und ein einheitliches Benennungssystem für die Backups eingeführt.
 
-5. Dokumentation zu Markdown-Code-Highlighting durchgelesen und die Befehle gezielt für die Steuerung der API via Terminal dokumentiert.
+5. Mich kurz in die Markdown-Dokumentation eingelesen und das Highlighting gezielt für Terminal-Befehle und JSON formatiert.
 
-6. Geschaut ob Test Einträge fehlerfrei in der SQLite-Datenbank landen. 
+6. Die Test-Schritte (z.B. via Swagger-UI) selbst durchgespielt und in der SQLite-Datenbank verifiziert, dass die Einträge dort fehlerfrei gespeichert werden.
 
 # 🎉 Congratulations! You did it! 🎓✨
 
