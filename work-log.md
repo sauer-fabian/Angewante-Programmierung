@@ -64,9 +64,6 @@ _Explain how you overcame the challenges or what help you needed._
 
 - Hausaufgabe: Endpoint erstellt, der eine Zahl (Dein Alter) empfängt und um +1 erhöht zurückgibt. (... So alt bist du nächstes Jahr )
 
-
-
-
 ---
 
 #### 2. 🚧 What challenges did I face?

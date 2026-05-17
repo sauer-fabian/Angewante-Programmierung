@@ -134,7 +134,6 @@ Um zu kontrollieren, welche Einträge aktuell in der Datenbank hinterlegt sind, 
 * **Variante B (Über Swagger UI):**
 Navigiere in der interaktiven Dokumentation (`http://127.0.0.1:8000/docs`) zum blauen Endpunkt `GET /notes` List Notes. Klicke auf **"Try it out"** und anschließend auf den blauen **"Execute"**-Button. Die API liefert daraufhin die Liste aller gespeicherten Notizen im Response-Body zurück.
 
-```
 
 
 ---
@@ -163,6 +162,3 @@ Die Initialisierung der Tabellenstrukturen erfolgt vollautomatisch beim Starten 
 
 Möchte man die Anwendung in den Auslieferungszustand versetzen und alle gespeicherten Notizen verwerfen, muss lediglich die Datei `notes.db` aus dem Projektordner gelöscht werden. Die Datenbankarchitektur baut sich beim nächsten Backend-Start komplett neu auf.
 
-```
-
-```
