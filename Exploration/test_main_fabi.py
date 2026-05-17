@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from Bus.main_05_05_Terminal import app # Hier 'main' durch den Namen deiner Datei ersetzen
+from Bus.main_0505 import app # Hier 'main' durch den Namen deiner Datei ersetzen
 
 client = TestClient(app)
 

@@ -9,26 +9,26 @@ Instructions: Fill out one log for each course day. Content to consider: Course 
 ---
 
 ## 1. ✅ What did I accomplish?
-Entwicklungsumgebung mit VS Code, Git und dem Package Manager uv vollständig eingerichtet.
 
-Unterschied zwischen Git (lokal) und GitHub (Cloud) gelernt und Git-Repository initialisiert.
+_Reflect on the activities, exercises, and work you completed today._
 
-Erstes FastAPI-Projekt erstellt und eine „Hello World“-API programmiert.
-
-Interaktive API-Dokumentation unter /docs (Swagger UI) zum Testen der Endpoints genutzt.
-
-Hausaufgabe: Endpoint erstellt, der eine Zahl (Dein Alter) empfängt und um +1 erhöht zurückgibt. (... So alt bist du nächstes Jahr )
-
+**Guiding questions:**
+- What topics or concepts did you work with?
+- What exercises or projects did you complete?
+- What tools or technologies did you use?
+- What did you learn or practice?
 
 ---
 
 ## 2. 🚧 What challenges did I face?
 
-Die Installation von Git auf dem Mac über das Terminal war unübersichtlich.
+_Describe any difficulties, obstacles, or confusing moments you encountered._
 
-Homebrew als Paketverwalter kenne ich im Kontext, als ich meinen Nintendo gehacked hatte, um dort Romhacks zu spielen, war verwundert das es auch für Windows etc. gedacht ist.
-
-Schwierigkeiten beim Verständnis, wie Server, Browser und die API-Logik zusammenarbeiten.
+**Guiding questions:**
+- What was difficult to understand?
+- Where did you get stuck?
+- What errors or problems did you face?
+- What felt frustrating or confusing?
 
 
 ---
@@ -52,11 +52,18 @@ _Explain how you overcame the challenges or what help you needed._
 
 #### 1. ✅ What did I accomplish?
 
-setup von Git 
+- Entwicklungsumgebung mit VS Code, Git und dem Package Manager uv vollständig eingerichtet.
 
-Code mit Server und eingabe 
+- Unterschied zwischen Git (lokal) und GitHub (Cloud) gelernt und Git-Repository initialisiert.
 
-uv implementieren
+- Erstes FastAPI-Projekt erstellt und eine „Hello World“-API programmiert.
+
+- Die API über den Browser und die interaktive Dokumentation (/docs) erfolgreich getestet.
+
+- Mehrere einfache Endpunkte erstellt.
+
+- Hausaufgabe: Endpoint erstellt, der eine Zahl (Dein Alter) empfängt und um +1 erhöht zurückgibt. (... So alt bist du nächstes Jahr )
+
 
 
 
@@ -64,70 +71,64 @@ uv implementieren
 
 #### 2. 🚧 What challenges did I face?
 
-mit den neuen themen wie github und upload und phython connection klar kommen 
+1. Die Installation von Git über das Terminal war unübersichtlich. 
 
-uv verstehen
+2. Der Paketmanager Homebrew war in diesem Kontext neu für mich (ich kannte ihn bisher nur für Konsolen-Modifikationen für Romhacks).
 
-sehe die testergnisse nicht 
+3. Das Zusammenspiel zwischen dem lokalen Server, dem Browser und der API-Logik war am Anfang schwer zu verstehen.
+
+4. Die Testergebnisse im Terminal wurden mir zunächst nicht angezeigt.
 ---
 
 #### 3. 💡 How did I overcome them?
 
-nachfragen
+1. Hilfe bei der Installation und Einrichtung von Kommilitonen erhalten.
 
-googlen
+2. Befehle gegoogelt, die Dokumentation gelesen und gelernt, wie Homebrew als Paketverwalter für Software arbeitet.
 
-uv run pytest test_main.py -v einfgefüt 
+3. Durch das Starten des Servers mit uv run fastapi dev und direktes Testen im Browser die Funktionsweise der API nachvollzogen. Zudem Befehle gegoogelt und die Dokumentation gelesen.
+
+4. Den Befehl uv run pytest test_main.py -v im Terminal verwendet, um die detaillierten Ergebnisse anzuzeigen.
 
 ---
 
 ### Day 2
 
 #### 1. ✅ What did I accomplish?
+- Grundlagen zu APIs, HTTP und JSON gelernt.
 
-git ignore kennen gelernt (sehr wichtig wenn man was nicht funktioniert könnte es daran nicht) 
+- Die .gitignore Datei kennengelernt, um unnötige Dateien vom Upload auszuschließen. (sehr wichtig wenn man was nicht funktioniert könnte es daran liegen) 
 
-HTtp 
-kommunikationswege 
+- Note Taking API mit Daten-Speicherung in einer notes.json gebaut (Persistenz).
 
-und Json
-What we learned:
+- Verwendung der HTTP-Methoden GET (Daten holen) und POST (Daten senden).
 
-✅ HTTP = Communication protocol
-✅ GET = retrieve, POST = create
-✅ JSON = data format (like Python dict)
-✅ Status codes communicate results
-✅ FastAPI handles conversion automaticall
+- Nutzung von Pydantic-Modellen für die Struktur der Notizen.
 
+- Daten werden dauerhaft in einer notes.json gespeichert (Daten-Persistenz).
 
-
-
+- Bonusaufgabe gelöst: Einen DELETE-Endpunkt zum Löschen von Notizen eingebaut.
 ---
 
 #### 2. 🚧 What challenges did I face?
 
-nicht vergessen, das wenn ein fehler beim implemntieren kommt von Datei namen, dass dieser typ bei git ignore sein könnte.
+1. „Internal Server Error“ (Fehler 500) beim Versuch, neue Daten in die JSON-Datei zu schreiben. Generelle Unsicherheit, wo genau Code im Skript ergänzt werden muss.
 
-Server error 
+2. Syntax-Fehler: Die Variable notes_db wurde fehlerhaft gleichzeitig als Parameter und als globale Variable verwendet.
 
-rest principe verstehen
-
-SyntaxError: name 'notes_db' is parameter and global
+3. Das REST-Prinzip war schwer verständlich
 ---
 
 #### 3. 💡 How did I overcome them?
 
-git ignore augeschrieben das es passieren kann bei dateinamen
+Kis genutzt (Copilot, ChatGBT,Gemini) genutzt um fehlermeldungen zu verstehen und im code anzupassen
+(Google Gemini hat mich dabei am besten verstanden)
 
-Gemini genutzt um fehlermeldungen zu verstehen und im code anzupassen
-- server errror -> note hinzugefügt 
-- bei data mal den notiz gelöscht dann hats funktioniert
+1. Die fehlende Funktion save_notes() im POST-Endpunkt ergänzt, damit die Daten auf der Festplatte gespeichert werden. Die Code-Struktur mit den Vorlesungsbeispielen verglichen und Einrückungsfehler korrigiert.
 
-gegooglet
+2. KI genutzt, um die Fehlermeldungen zu analysieren. Eine alte Testnotiz aus der Datei gelöscht, danach funktionierte der Code wieder.
 
-
-
-
+3. Informationen zum REST-Prinzip im Internet nachgelesen und die HTTP-Methoden entsprechend zugeordnet.
 
 ---
 
@@ -135,96 +136,67 @@ gegooglet
 
 #### 1. ✅ What did I accomplish?
 
+- HTTP-Fehlercodes (wie 404 und 500) kennengelernt.
 
-tags hinzugefügt 
+- Unterschied zwischen Path-Parametern (konkrete Ressource) und Query-Parametern (Filterfunktion) gelernt.
 
-    Prüfungsleistung besser verstanden
+- Tags zu den Notizen hinzugefügt.
 
-Wie mach ich Testszenarien?
-Also automatisieren, das bots dein quasi Formular bringen.
+- Das Konzept des testbasierten Arbeitens angewendet, um Funktionen automatisiert zu überprüfen.
 
-test basiert arbeiten, damit man alles noch mal durch laufen lassen kann um zu chekcen ob alles noch funktioniert
+- Die FastAPI-GUI genutzt, um der KI Spezifikationen zu geben und Tests schreiben zu lassen.
 
-fast gui anschauen
-damit ki geben und test schreiben lasen
-pyt test, 
-    damit teste ergnisse kathegorien festlegen können 
+- Die Datenspeicherung von JSON auf eine SQLite-Datenbank umgestellt und eine Many-to-Many-Beziehung über eine Link-Tabelle hergestellt. 
 
+- Prüfungsleistung besser verstanden
 
+- getting shit done (Frame Work), um sehr konkret ein projekt beschreiben um projket zu machen
 
-Delet doppelt drin gehabt durch bosuns aufgabe von tag 2
+- Gelernt wie man die Ki tests schreiben lässt: kreire tests for the following openapi specification store the test in reference impllementation folder use pytest and requests libery 
 
+- Das "Resource-Oriented Design" bei REST-APIs verstanden: URLs sollten immer Nomen und keine Verben sein (z. B. /notes statt /getNotes).
 
+- Mehrere Query-Parameter im Code kombiniert, um komplexe Filterungen (z. B. Suche + Kategorie + Tag gleichzeitig) zu ermöglichen.
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
-prüfungsleistung verstehen
+1. Fehler durch Code-Dopplungen (z. B. war der Delete-Endpunkt von Tag 2 doppelt im Code) und störende alte Funktionen, die noch auf das alte Dateisystem ausgelegt waren. Es gab auch Parameter-Reste, die Verwirrung stifteten.
 
-Verstehen des codes
+2. Alte und neue Endpunkte zeigten Fehler an. Pfade wie `/test/123` wurden aufgrund einer falschen Reihenfolge im Code falsch interpretiert.
 
-Quellcode deer ki übergeben -> testsschreiben lassen schreien kreire test for the following openapi specification store the test in reference impllementation folder use pytest and requests libery 
-(code)
+3. Die Umsetzung der vielen neuen Aufgaben war aufwendig: Den Statistik-Endpunkt anpassen (soll zusätzlich die 5 häufigsten Tags und die Gesamtzahl ausgeben), neue Endpunkte für Kategorien bauen, den Unterschied zwischen PUT (ganze Notiz überschreiben) und PATCH (einzelne Daten ändern) abbilden und Datumsfilter (`created_after`, `created_before`) einbauen.
 
+4. Die Umstellung von der JSON-Datei auf die SQLite-Datenbank war die größte Aufgabe und erforderte viele Änderungen. Sie verursachte unerklärliche Server-Fehler. Zudem sah die neue Datenbankdatei (`notes.db`) im normalen Code-Editor komplett unleserlich (weird) aus.
 
-getting shit done (Frame Work), um sehr konkret ein projekt beschreiben um projket zu machen
+5. Es war unklar, wie man absichtliche Fehler (wie einen 404 Not Found oder 422 Validation Error) in der Test-Suite überhaupt richtig und sinnvoll testet.
 
-save notes doppelt drin gehabt (Python erlaubt das nicht. Ein Name darf in einer Funktion nicht gleichzeitig ein übergebener Parameter und eine globale Variable sein.)
+6. JSON-Payload-Formatierung in der API (Swagger UI): Ein Versuch, Tags ohne Anführungszeichen (z. B. [rot]) zu übergeben, schlug fehl und wurde vom System nicht akzeptiert.
 
-code dopplungen bonus aufgabe
+7. NameError Abstürze im Code: Nach dem Löschen der JSON-Logik stürzte das Programm ab, weil alte Endpunkte noch Variablen wie den note_id_counter suchten. Später trat ein ähnlicher Fehler auf, weil engine nicht definiert war.
 
----
+8. Unerklärliche "Internal Server Error" (500) Meldungen beim Erstellen einer Notiz mit Tags in der neuen Datenbank. Die Fehlerursache war im Browser nicht sichtbar, da die Datenbank die Many-to-Many-Beziehung (NoForeignKeysError) ohne ausdrückliche Erklärung im Code nicht verstand.
 
-1. Der bestehende Endpunkt /notes/stats muss angepasst werden. Er soll zusätzlich die 5 häufigsten Tags und die Gesamtzahl aller verschiedenen Tags ausgeben.
-
-2. neue Endpunkte bauen:  
-- Einen für eine Liste aller existierenden Kategorien.  
-- Einen für alle Notizen aus einer bestimmten Kategorie.
-
-3. Endpunkt, der nur einzelne Felder einer Notiz ändert. PUT überschreibt die ganze Notiz, PATCH ändert nur die Daten, die du mitgibst.
-
-4. Du musst zwei neue Filter für GET /notes einbauen: created_after und created_before.
-
-5. Die JSON-Datei wird durch eine SQLite-Datenbank ersetzt. Das ist die größte Aufgabe und erfordert viele Änderungen im Code.
-
-notes gruppen entfernen 
-- path
-- load notes
-- def save notes
-- load notes
-
-allte entpunkte zeigen fehler an 
-
-die notes.db datei hat weird aussehen 
-
-server error aber nicht rausgefunden warum
 ---
 
 #### 3. 💡 How did I overcome them?
 
-Es soll ein sinnvolles system entstehen
+1. Die doppelten Code-Teile gelöscht und veraltete JSON-Funktionen (wie `load_notes`, `save_notes` und Pfad-Angaben) komplett entfernt. Auf Anraten der KI habe ich zudem den Parameter `notes_db=None` aus den Klammern gelöscht, da die Funktion im restlichen Code immer ohne Werte aufgerufen wurde.
 
-überlegen ob ich ein eigens projekt mache 
+2. Die Reihenfolge der Endpunkte im Code korrigiert (spezifische Pfade weiter nach oben gesetzt), damit FastAPI die Pfade wieder richtig zuordnet und interpretiert.
 
-Ki Fragen -> Lösche den Parameter notes_db=None aus der Klammer. Da du im restlichen Code immer nur save_notes() ohne Werte aufrufst, wird dieser Parameter nicht gebraucht.
+3. Die Aufgaben Schritt für Schritt abgearbeitet: Den alten Statistik-Endpunkt `#@app.get("/notes/stats")` verworfen und den Code aktualisiert. Neue Endpunkte für die Liste aller Kategorien und für Notizen einer bestimmten Kategorie erstellt. Den Endpunkt `@app.get("/notes")` angepasst, um die Datumsfilter einzubauen (dabei gelernt, dass man das ISO-Datum direkt als Text vergleichen kann).
 
-uv add sqlmodel instaliert
+4. Den SQLite Viewer in VS Code installiert, wodurch die Datenbank leserlich wurde. Die Fehler nach der Datenbank-Migration gesucht und die nötigen neuen Endpunkte für die Datenbank Stück für Stück umgesetzt.
 
-delet bonusaufgabe raus gmeacht 
----
-1. #@app.get("/notes/stats") verwerfen und code aktualisieren
+5. Gelernt, dass man im Test gezielt fehlerhafte Daten (z. B. fehlende Pflichtfelder) oder völlig ungültige IDs an die API sendet und dann mit assert response.status_code == 422 bzw. 404 prüft, ob die API den Fehler korrekt abfängt.
 
-2. - Code für liste aller  existierenden Kathegrie erstellen 
--Code für alle Notizen die ganu zu eingegebenen Kategroie erstellt 
+6. Das richtige JSON-Format angewendet: Gelernt, dass Strings innerhalb von Listen in JSON zwingend in doppelte Anführungszeichen gesetzt werden müssen (also ["rot"] statt [rot]).
 
-@app.get("/notes") erneut anpassen. Du fügst zwei neue Filter für das Datum ein: created_after und created_before. Man kann das ISO-Datum direkt als Text vergleichen.
+7. Den alten Code komplett durch die neue SQLModel-Logik ersetzt (wodurch IDs von der Datenbank automatisch vergeben werden und der Counter obsolet wurde). Fehlende Werkzeuge wie create_engine am Anfang der Datei in den Import-Bereich hinzugefügt.
 
-
-neue endpunkte für datenbank verwenden
-
-hab SQLite Viewer instaliert
-
+8. Gelernt, wie man den Stacktrace (Fehlertext) in der Server-Konsole liest, um die Ursache für einen 500er-Fehler zu finden. Das Problem gelöst, indem ich eine explizite Verbindungstabelle (NoteTagLink) als Code definiert und per link_model verknüpft habe. Wichtigstes Learning: Die durch vorherige Fehler korrumpierte notes.db-Datei musste vor dem Server-Neustart komplett gelöscht werden, damit sie sauber neu aufgebaut werden konnte.
 
 ## Week 2
 
@@ -232,56 +204,66 @@ hab SQLite Viewer instaliert
 
 #### 1. ✅ What did I accomplish?
 
-niemmals namen wie paket nennen sonst überschreiben des packets
 
-fake macht random namen mit versciednen nationlaitäten (schriften)
+- simple Tests für Beispiel-Endpunkte geschrieben und ausgeführt
 
-### prompt gestaltung 
-erklärung was wir haben 
-bevor du anfängst stell mir fragen zur klärung
+- niemmals namen wie paket nennen sonst überschreiben des packets
 
-einzeltest starten
-uv run pytest test-day. py :: test_is_adult_boundery_18 # 
+- fake macht random namen mit verschiedenen Schriften aus verschiedenen Nationlaitäten
 
-kleinen test anfangen, 
+- Alle Endpunkte und Grenzfälle getestet
 
-workflow;
-erst einen externe file aufbauen, um zu testen, ob es funktioniert 
+- Einführung in das automatisierte Testen von APIs mit `pytest` und der Bibliothek `requests`.
 
-wie man die tests startet 
- uv run pytest test_main.py  
- wie man sie sieht 
-  uv run pytest test_main.py -v
+- Die grundlegende Teststruktur nach dem Prinzip „Arrange – Act – Assert“ (Vorbereiten – Ausführen – Prüfen) gelernt und angewendet.
 
-Die Klassen NoteCreate und Note prüfen, ob die Daten, die reinkommen, korrekt sind (z. B. ob der Titel ein Text ist).
+- Die `Faker`-Library erfolgreich eingebunden, um automatisch zufällige Testdaten (wie Namen in verschiedenen Schriften) zu generieren.
 
-Mit load_notes() und save_notes() schreibst du alles in die notes.json. So sind deine Notizen nicht weg, wenn du den Server ausschaltest.
+- Gelernt, dass man eigene Dateien niemals exakt wie installierte Bibliotheken benennen darf, da Python diese sonst überschreibt und blockiert.
 
-POST /notes: Erstellt eine Notiz, gibt ihr eine ID und speichert sie.  
-GET /notes: Listet alle gespeicherten Notizen auf.  
-GET /notes/{id}: Sucht eine ganz bestimmte Notiz raus.  
+- Gelernt, wie man über das Terminal gezielt Einzeltests ansteuert, Tests komplett durchlaufen lässt und sich mit dem Parameter `-v` die ausführlichen Ergebnisse anzeigen lässt.
 
+- Den Workflow für die API-Entwicklung optimiert: Zuerst eine separate Test-Datei aufbauen, um den Code isoliert und sicher zu prüfen.
 
+- Eine eigene `test_notes.py` erstellt, die alle wichtigen Endpunkte (POST zum Erstellen, GET zum Auflisten, GET mit ID zum Suchen) automatisch validiert.
+
+- Verstanden, wie Pydantic-Klassen (NoteCreate und Note) eingehende Daten am API-Eingang absichern (z. B. Typenprüfung, ob der Titel ein Text ist).
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
-rausgefunden das create_engine ausgegraut ist 
+1. Pytest hat am Anfang überhaupt keine Tests erkannt („0 tests found“), weil die Benennung der Testdateien und Testfunktionen nicht den strengen Namenskonventionen entsprach.
 
-den code zum laufen lassen
+2. Große Unsicherheit beim genauen Aufbau von API-Tests und Schwierigkeiten, realistische Grenzfälle (Error Cases) sauber im Code zu definieren (z. B. wie man ungültige IDs oder negative Altersangaben wie bei `/is-adult/{age}` richtig testet).
 
+3. Der Befehl `create_engine` wurde im Code-Editor plötzlich ausgegraut dargestellt, was zu Verwirrung führte und auf einen fehlerhaften Import hindeutete.
 
+4. Beim Ausführen der Tests mit der `requests`-Bibliothek gab es Verbindungsfehler, weil das Zusammenspiel zwischen den Test-Skripten und der API nicht funktionierte.
+
+5. Nach dem erfolgreichen Durchlauf der Tests zeigte pytest in der Zusammenfassung nur "7 passed" statt der erwarteten 8 Tests an.
+
+6. Große Verwirrung darüber, wo genau im Code-Editor die Test-Struktur abgelegt werden muss und in welchem spezifischen Terminal-Fenster die Test-Befehle gestartet werden müssen. 
+
+7. Das Terminal zeigte nach dem Testlauf kryptische Deprecated-Warnungen bezüglich der veralteten Pydantic-Klasse class Config innerhalb von NoteResponse an.
+
+8. Die detaillierten Testschritte und überprüften Grenzwerte (wie die generierten ausländischen Namen) waren im Standard-Output des Terminals nicht sichtbar, da pytest standardmäßig nur Punkte (.) ausgibt.
 
 ---
 
 #### 3. 💡 How did I overcome them?
 
-ki gefrag wie fixen 
+1. Die Dateinamen konsequent in `test_main.py` bzw. `test_day4.py` umbenannt und alle Testfunktionen mit dem Präfix `test_` versehen, damit pytest sie automatisch findet und ausführt.
+2. Die Teststruktur an den Beispielen aus der Präsentation orientiert: Tests strikt so aufgeteilt, dass immer zuerst der Normalfall (Erfolg) und danach gezielt der Fehlerfall (Grenzfall) geprüft wird. Für komplexe Grenzfälle habe ich Schleifen eingebaut und mir Inspiration von einer KI holen und erklären lassen.
+3. KI gefragt, wie der Import-Fehler bei `create_engine` zu beheben ist, ungenutzte Import-Leichen bereinigt und den Code-Aufbau für die Dateipersistenz sauber getrennt.
+4. Den Workflow korrigiert: Verstanden, dass für `requests`-basierte Tests immer zwei Terminals parallel laufen müssen – im ersten Terminal muss die FastAPI mit `uv run fastapi dev` aktiv laufen, bevor im zweiten Terminal die Test-Suite mit `uv run pytest -v` gestartet wird.
+5. Verstanden, dass pytest jede Python-Funktion als genau einen Test zählt. Ich hatte das "Anlegen" und "Löschen" in einer Funktion kombiniert. Durch das Aufteilen in zwei separate Funktionen (test_create_to_delete und test_delete_specific) wurden die vollen 8 Tests sauber durchgezählt.
 
-ki gefragt wie man test und 
+6. Eine dedizierte Datei test_main.py im exakt selben Root-Verzeichnis angelegt und das integrierte Terminal von VS Code (Strg + ö) genutzt, um sicherzustellen, dass die Befehle im richtigen Projektpfad ausgeführt werden.  
 
+7. Mithilfe der Terminal-Fehlermeldung gelernt, dass Pydantic v2.0 das alte class Config nicht mehr empfiehlt und man stattdessen langfristig auf ConfigDict migrieren sollte; die Warnung konnte für den aktuellen Präsentationsstand jedoch ignoriert werden.
 
+8. Den Test-Befehl im Terminal um das Flag -v (verbose) erweitert (uv run pytest test_main.py -v), wodurch pytest gezwungen wird, jeden Grenzwert-Testnamen und den exakten PASSED-Status transparent untereinander aufzulisten.
 
 ---
 
@@ -289,53 +271,39 @@ ki gefragt wie man test und
 
 #### 1. ✅ What did I accomplish?
 
-grundlagen von programierung
-- arten von daten (float,integer...)
-- was ist github (gibt auch varianten)
-- was sidn standartberiffe (Def, print..)
+Grundlagen der Programmierung wiederholt (Datentypen wie Float und Integer, Standardbegriffe wie Def, print).
 
-wie validiere ich richtig:
+Verstanden, was GitHub ist und dass es verschiedene Varianten davon gibt.
 
-art und weiße wie man ein datum  eingibt, wird geläst in bag end. Geb: "YYYY-MM-DD" so passt 
+Datenvalidierung mit Pydantic tiefgehend behandelt.
 
-front end macht es wie es passiert 
+Gelernt, wie man richtig validiert: Die Art und Weise, wie ein Datum eingegeben wird, wird im Backend gelöst (Format: "YYYY-MM-DD").
 
+Field(...) Constraints für Pydantic-Modelle fließend genutzt.
 
-- ✅ Use `Field(...)` constraints fluently
-- ✅ Write `field_validator` and `model_validator` functions
-- ✅ Choose between Optional, default, and required
-- ✅ Read and explain Pydantic 422 error responses
-- ✅ Tighten loose models so bad data is rejected at the door
+Eigene field_validator und model_validator Funktionen geschrieben.
+
+Gelernt, zwischen Optional, Default und Required Feldern zu wählen.
+
+Pydantic 422 Error Responses gelesen, verstanden und lose Modelle abgedichtet, damit schlechte Daten direkt abgewiesen werden.
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
-unstrukturierter daten aufbau
+1. Probleme mit unstrukturiertem Datenaufbau und Schwierigkeiten bei den Edge Tests der Hausaufgabe (Modelle spezifizieren, Titellänge begrenzen, Zeilenumbrüche verhindern, unbekannte Kategorien abfangen).
 
-edge tests 
+2. Fehlermeldungen im Code, weil ich lange Zeit nicht gemerkt habe, dass man für die E-Mail-Validierung ein extra Paket installieren muss.
 
-hausaufgabe
-modelle spezifisieren 
-titellänge begränzen 
-titel inhalt spezifisieren (teilenumbrüche verhindern)
-eigene test erweitern, -> grenzfälle testen 
-    reject short title 
-    unnohen categrien...
-
-
-lange nicht gemerkt, das ich uv add email-validator installieren muss
-
-
-internatal serverer errer, probleme mit derr ntoes.json datei
+3. „Internal Server Error“ (Fehler 500) im Terminal aufgrund von Problemen mit der lokalen notes.json Datei.
 ---
 
 #### 3. 💡 How did I overcome them?
-uv add email-validator installiert im terminal
-neues main.py aus unterricht und selbstarbeit übernommen 
+1. Die Hausaufgabe Schritt für Schritt gelöst: Eigene Tests erweitert, um Grenzfälle wie reject short title oder unknown categories zu prüfen, und die Kategorien direkt im Validator mit .lower() normalisiert.
 
+2. Das fehlende Paket mit dem Befehl uv add email-validator manuell im Terminal nachinstalliert.
 
-notes.json gelöscht, wurde neu erstellt hat geklappt
+3. Die fehlerhafte notes.json einfach komplett gelöscht. Sie wurde beim Serverstart sauber neu erstellt, wodurch der Fehler verschwand. Zudem das neue main.py aus dem Unterricht übernommen.
 
 
 ---
@@ -344,103 +312,73 @@ notes.json gelöscht, wurde neu erstellt hat geklappt
 
 #### 1. ✅ What did I accomplish?
 
-gelernt das mein code noch nicht gut genung ist
+Gelernt und eingesehen, dass mein Code noch nicht gut genug und robust genug war.
 
+Die eigene API gegen eine umfangreiche, fremde externe Test-Suite geprüft.
 
+Eine eigene Datei class_based_decorator.py erstellt und Python-Decoratoren kennengelernt.
 
+Die Bibliothek icecream für übersichtlicheres und besseres Debugging installiert und genutzt.
 
+Die API-Logik überarbeitet, t, um die Anforderungen der Tests zu erfüllen (z.B. Root Endpoint hinzugefügt).
+---
+Hier ist der aufbereitete Block für **Day 6**. Alle deine Angaben sind inhaltlich vollständig enthalten, kurz und verständlich formuliert und exakt im sachlichen und einfachen Stil des restlichen Dokuments gehalten. Die Herausforderungen und Lösungen passen nun nummeriert perfekt 1-zu-1 zusammen:
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
-1. 20 faild 11 passed 97 errors
+1. Große Menge an Fehlermeldungen beim ersten Durchlauf der externen Test-Suite (20 failed, 11 passed, 97 errors).
+2. Fehler 422, weil die API im Body das Feld `author_email` zwingend erwartete, die Test-Suite dieses Feld aber nicht mitsendete.
+3. Fehler 422 bei Notizen der Kategorie "work", da eine Validierungsregel zwingend den Tag "work" verlangte, die Test-Suite aber andere Tags (wie "sample") schickte.
+4. Fehler 404 beim Aufruf des Root-Pfads (`/`), da kein passender Endpunkt existierte.
+5. Die Test-Suite verursachte Fehler 404, da sie die Endpunkte `/categories/...` und `/tags/...` nicht finden konnte.
+6. Fehler 405 (Method Not Allowed) beim Pfad `/notes/{note_id}`, da die Test-Suite dort die HTTP-Methode PUT erwartete, diese im Code aber fehlte.
+7. Die Statistik-Funktion hat die häufigsten Tags (Top Tags) nicht richtig ermittelt.
+8. Zu kurze Tags wurden von der API fälschlicherweise angenommen, anstatt blockiert zu werden.
+9. Absichtlich ungültige Datumsangaben im Test (wie "2026-13-01" oder reiner Text) führten zum kompletten Absturz der Anwendung, anstatt eine Fehlermeldung auszugeben.
+10. Der Datumsvergleich innerhalb der Filterung funktionierte nicht zuverlässig und führte zu Abstürzen.
+11. Die API antwortete bei einer Liste von 11 Tags mit Status 201, obwohl der Test aufgrund der Überschreitung der erlaubten Tag-Anzahl einen Fehler 422 erwartete.
+12. Alle 70 Tests der Test-Suite wurden plötzlich übersprungen (skipped).
+13. Der Endpunkt für die Filterung (Status 200) kombinierte die verschiedenen Suchkriterien (Kategorie, Suche, Tags, Datum) noch nicht korrekt.
+14. Der Statistik-Endpunkt lieferte zu viele Ergebnisse bei den Top-Tags und schlug im Test fehl.
 
-2. Fehlermeldung:
-"msg":"Field required","loc":["body","author_email"]
-(API erwartet im "Body" (also in den Daten, die geschickt werden) ein Feld namens author_email. Die Test-Suite schickt dieses Feld aber nicht mit.)
-
-3. "msg":"Value error, Arbeits-Notizen brauchen zwingend den Tag 'work'."
-Die Test-Suite erstellt aber Notizen mit der Kategorie "work", nutzt aber andere Tags (z. B. "sample", "test" oder "spaced"). Dein Code blockt das mit einem Fehler 422 ab, aber die Test-Suite erwartet Erfolg (201).
-
-4.  Fehler  404 
-
-5. Fehler durch reihnfolge 
-
-6. 405 fehler, fastAPI findet den pfad /notes/{note_id} aber gibt dort keine funkton mit der methode put 
-
-7. findet top tags nciht gut 
-
-8. zu kurze tags werden angenommen 
-
-9. created_after und created_before lehnt keine ungültigen daten bisher ab
-
-10. list_notes datum führt zum absturz
-
-11. Die Tests finden die Endpunkte /categories/... und /tags/... nicht.
-
-12. API anwortet mit 201 (Erfolg), aber der Test erwartet 422, weil 11 Tags zu viele sind.
-
-13. alle 70 tests wurden gescipped
-
-14. Status 200 filtert noch nnicht richtig
-
-15. Test schickt ein absichtlich falsches Datum (wie 2026-13-01 oder den Text not-a-date) und erwartet, dass deine API das mit einem Fehler 422 ablehnt.
 ---
 
 #### 3. 💡 How did I overcome them?
 
-1. erst mal author email optional gemacht
-
-2. @model_validator raus hauen
-
-3. Root-Endpunkt hinzufügen 
-(keinen Endpunkt für @app.get("/") hast. Die Test-Suite erwartet dort eine Antwort.)
-
-4. bei get notes filter logig hinzufüge nmit if 
-
-5. endpunkte aus tag 3 wieder hinzufuügen 
-
-6. 405 fehelr: endpunkt mit put hinzufügen für /notes/{note_id}
-
-7. nutzen collections.Counter, um die Top-Tags leicht zu finden:
-
-8. tag feld aktuallisieren
-
-9. Typ in der Funktion von str auf date ändern. FastAPI validiert das Datum dann automatisch nach ISO-Standard.
-
-10. nehme str um sie als text zu vergleichen, damit iso strings sortierbar sind.
-
-11. Endpunkte in main.py kopieren
-
-12. max_length Beschränkung
-
-13. Server war nicht erreichbar
-
-
-14. alle Filter (Kategorie, Suche, Tags und Datum) korrekt kombiniert:
-
-15. Änderung  vom Anfang der list_notes Funktion in der main.py
+1. Die Fehlermeldungen im Terminal systematisch und Schritt für Schritt analysiert und abgearbeitet.
+2. Das Feld `author_email` in der Modelldefinition von `NoteCreate` als optional definiert (`author_email: str | None = None`).
+3. Den entsprechenden `@model_validator` für den "work"-Tag vorübergehend aus dem Code entfernt.
+4. Einen Root-Endpunkt (`@app.get("/")`) hinzugefügt, um der Test-Suite eine Standardantwort zu liefern.
+5. Die Endpunkte für Kategorien und Tags aus den Aufgaben von Tag 3 wieder vollständig in die `main.py` kopiert.
+6. Einen Endpunkt mit der Methode PUT für `/notes/{note_id}` hinzugefügt, der die gesamte Notiz ersetzt.
+7. `collections.Counter` eingebunden, um die Häufigkeit der Tags präzise auszugeben.
+8. Die Validierung im Tag-Feld (`clean_tags`) aktualisiert, sodass Tags mindestens 2 Zeichen lang sein müssen.
+9. Den Parametertyp in der Funktion von `str` auf `datetime` geändert, damit FastAPI ungültige ISO-Formate automatisch mit Fehler 422 abweist.
+10. Die Datumsstrings als Text verglichen, um die ISO-Strings innerhalb der Funktion sortierbar und vergleichbar zu machen.
+11. Eine Längenbeschränkung für die Tag-Liste im Pydantic-Modell hinterlegt, um zu viele Tags abzuweisen.
+12. Die Verbindung geprüft und den lokalen API-Server im Terminal neu gestartet.
+13. Alle Filterbedingungen am Anfang der `list_notes`-Funktion sauber mit `if`-Abfragen strukturiert und zusammengeführt.
+14. Die Ausgabe der häufigsten Tags über `.most_common(5)` strikt auf die geforderten 5 Ergebnisse begrenzt.
 
 ---
 
 ## Week 3
 
-### Day 7
+### 1. ✅ What did I accomplish?
 
-#### 1. ✅ What did I accomplish?
+Das Frontend-Framework Streamlit erfolgreich installiert.
 
-streamlit installiert
+Gelernt, dass Streamlit UTF-8-Kodierung nutzt, wodurch sämtliche Sprachen und Sonderzeichen nativ unterstützt werden.
 
-streamlit benutzt UTF-8-Kodierung, somit sämtliche sprachen und zeichen
+Streamlit als schlanke und performante Möglichkeit kennengelernt, um ohne Java- oder tiefe HTML-Kenntnisse GUIs direkt in Python zu schreiben.
 
-streamlit ist auch gut für schlanke operationen, weil dem team es egal ist, wenn es über java oder phython läuft und einfach erweitert werden kann 
+Eine funktionierende Verbindung zwischen dem Frontend (Streamlit) und dem Backend (FastAPI) hergestellt.
 
-Eine Verbindung zwischen dem Frontend (Streamlit) und dem Backend (FastAPI) hergestellt.  
+Die Funktion zum Anzeigen aller gespeicherten Notizen visuell eingebaut.
 
-Die Funktion zum Anzeigen aller gespeicherten Notizen eingebaut.  
-
-Ein Eingabe-Formular erstellt, um neue Notizen an die API zu senden.  
+Ein Eingabe-Formular erstellt, um neue Notizen an die API zu senden.
 
 Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
 
@@ -448,26 +386,30 @@ Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
 
 #### 2. 🚧 What challenges did I face?
 
-1. streamlit import schwierigkeiten erst mit pip install probiert nicht funktioniert
+1. Streamlit-Import-Schwierigkeiten: Ein Versuch, die Bibliothek über pip install zu installieren, schlug fehl.
 
-2. Fehler zum laufen bringen
+2. Allgemeine Fehler, das Skript und die Oberflächen-Anzeige fehlerfrei zum Laufen zu bringen.
 
-3. Die API hat Daten abgelehnt, wenn Pflichtfelder im Formular leer waren. 
+3. Die API im Backend lehnte Daten ab, wenn erforderliche Pflichtfelder im Streamlit-Formular leer abgeschickt wurden.
+
+4. Editor zeigt Fehler: Trotz Installation zeigte der Code-Editor immer noch an, dass Streamlit nicht gefunden werden kann (`could not be resolved`).
+
+5. Falsches Datenformat bei den Tags: Die API hat Fehlermeldungen ausgegeben, weil die Tags als einfacher Text statt als Liste an das Backend gesendet wurden.
 
 
 ---
 
 #### 3. 💡 How did I overcome them?
 
-1. uv add... verwendet
+1. Den korrekten Befehl `uv add streamlit` im Terminal verwendet.
 
-2. Mit Kommulitonen abgesprochen
+2. Die Fehler im Code analysiert und in direkter Absprache mit Kommilitonen behoben.
 
-3. Prüfungen im Frontend eingebaut, damit nur vollständige Daten an die API gesendet werden.
+3. Sicherheitsprüfungen direkt im Frontend eingebaut, damit nur vollständig ausgefüllte Formulare abgeschickt werden können.
 
+4. Umgebung gewechselt: Das Skript wurde im Terminal mit dem Befehl `uv run` gestartet, damit Python die richtige Umgebung mit den installierten Paketen nutzt.
 
-
-
+5. Text in Liste umgewandelt: Im Code wurde die Funktion `.split(",")` eingebaut, um den eingegebenen Text am Komma zu trennen und als korrekte Liste zu senden.
 
 
 ---
@@ -476,86 +418,39 @@ Daten erfolgreich mit requests.get abgerufen und mit requests.post gespeichert.
 
 #### 1. ✅ What did I accomplish?
 
-Datenstruktur aufgebaut 
+Die saubere Datenstruktur und sinnvolle Ordnerstrukturen für das Projekt aufgebaut.
 
-Git ignore noch mal durchgesprochen, es gibt bei git eine vorgefehrtigte Version, wo die standarts integriert sind, und dann seine extra sachen eingebaut wredne 
+Die .gitignore nochmals durchgesprochen: Gelernt, dass man vorgefertigte Standard-Versionen nutzt und diese manuell erweitert.
 
-Sinnvolle Ordnersturktur kennen gelernt 
+Gelernt, dass pyproject.toml dazu dient, Projektabhängigkeiten, Metadaten und Build-Anforderungen zentral zu verwalten, um veraltete Formate zu ersetzen.
 
+Die Struktur einer professionellen README.md (Markdown) erarbeitet: Anleitung zum Starten des Servers, Code-Schnipsel zum Anlegen und Abholen von Notizen.
 
-pyproject.toml dient dazu, Projektabhängigkeiten, Metadaten und Build-Anforderungen zentral zu verwalten, ersetzt veraltete Dateien
-
-README durchgesprochen, .md heißt markdown, das ist verbersserte dokumentation ermöglciht 
-
-README richtig aufbauen:
-wie starten das
-schnipsel
-notiz anlegen
-schmnipsel
-notizen abholen
-
-schnipsel raus kopieren und uv run eingeben (FastAPI) muss runnen
-
-readme files anschauen 
-
-
-Exkurs datascience
-er hat daten bereinigt 
-sotiert 
-im bworsers api. rein gehauen, 
-
-kann jetzt schauen, ob er die datei drin ist. 
-
-
----
-
-#### 2. 🚧 What challenges did I face?
-
-sehr viele Bus erstellt 
-
-
-
-
----
-
-#### 3. 💡 How did I overcome them?
-
-die richtigen aussotiert
-
-
-
-
-
----
-
-### Day 9
-
-#### 1. ✅ What did I accomplish?
-
-
-
-
-
+Exkurs in Data Science durchgeführt: Daten bereinigt, sortiert und über die API direkt in den Browser geladen.
 
 ---
 
 #### 2. 🚧 What challenges did I face?
 
 
+1. Durch die vielen Umstrukturierungen und Änderungen an der Speicher-Logik wurden im Code sehr viele Bugs (Fehler) produziert.
 
+2. Es wurde nicht mehr in der notes.json gespeichert. Die API versuchte, auf eine SQLite-Datenbank zuzugreifen, erstellte jedoch eine fehlerhafte Datenbankdatei, die bei den 70 automatisierten Tests abstürzte.
 
+3. hab mich gewundert, warum die tests funktinieren, aber ich keine Notizen anlegen kann im frontend
 
-
+4. Dateinen aus Bus (BackUps) waren unübersichtlich
 ---
 
 #### 3. 💡 How did I overcome them?
 
+1. Den Code systematisch bereinigt, Fehler aussortiert und nur die korrekten, funktionierenden logischen Teile behalten.
 
+2. sqlmodel sauber über das Terminal installiert, den Import from sqlmodel import SQLModel hinzugefügt, die Klassenstruktur angepasst und die alte, fehlerhafte notes.db Datei manuell gelöscht. Beim Neustart generierte sich die Datenbank fehlerfrei neu und bestand die 70 Tests wieder.
 
+3. hat nur eine Minute gedauert bis es in der Datenbank geladen war
 
-
-
----
+4. Neu und enheitlich Benennungssystem verwendet
 
 
 # 🎉 Congratulations! You did it! 🎓✨
