@@ -1,5 +1,4 @@
 
-```markdown
 # Notizen-Verwaltungssystem (API & UI)
 
 Ein kompaktes Python-Projekt, das eine REST-Schnittstelle (FastAPI) zur strukturierten Ablage von Notizen mit einer übersichtlichen Weboberfläche (Streamlit) verbindet. Die Anwendung erlaubt das Katalogisieren über Kategorien und Schlagwörter.
@@ -91,11 +90,21 @@ Ergänzende Auswertungs-Routen:
 
 ---
 
-## 🧪 Qualitätssicherung & Testläufe
+## Tests
 
 Das System bietet verschiedene Optionen, um die korrekte Funktionsweise der Schnittstellen und Datenverarbeitung zu überprüfen.
 
-### 1. Manueller Funktionstest via Swagger UI (Backend-Prüfung)
+### 1. Automatisierte Test-Suite (Integrationstests)
+
+Das Projekt enthält eine umfangreiche Testabdeckung in der Datei test_main.py. Insgesamt werden rund 70 automatisierte Testfälle ausgeführt, die alle Endpunkte, Filterkombinationen und Fehlerszenarien lückenlos überprüfen.
+
+Um die Test-Suite zu starten, muss die FastAPI-Anwendung bereits im Hintergrund aktiv sein (http://127.0.0.1:8000). Führe dann im Projektordner folgenden Befehl aus:
+
+```bash
+uv run pytest test_main.py -v
+```
+
+### 2. Manueller Funktionstest via Swagger UI (Backend-Prüfung)
 
 Um ohne den Start des Frontends zu kontrollieren, ob die API Einträge fehlerfrei verarbeitet und in der lokalen Datei `notes.db` hinterlegt, kann die interaktive Benutzeroberfläche unter `http://127.0.0.1:8000/docs` verwendet werden.
 
@@ -111,9 +120,6 @@ Navigiere dort zur Route `POST /notes`, aktiviere das Eingabefeld über den Butt
 
 ```
 
-### 2. Manuelles Testskript
-
-Die Datei `test_notes.py` ist ein älteres, manuelles Skript für einfache Requests. Es ist eher als Entwicklungshelfer gedacht als als vollständige Test-Suite.
 
 ---
 

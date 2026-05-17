@@ -440,6 +440,11 @@ Exkurs in Data Science durchgeführt: Daten bereinigt, sortiert und über die AP
 3. hab mich gewundert, warum die tests funktinieren, aber ich keine Notizen anlegen kann im frontend
 
 4. Dateinen aus Bus (BackUps) waren unübersichtlich
+
+5. Die Syntax für die korrekte Auszeichnung von Code-Blöcken im Terminal (wie z.B. für `bash` oder `json`) war mir in dieser Form neu für mich, obwohl ich die grundlegenden Textformatierungen von Markdown bereits aus Obsidian kannte.
+
+6. Anhand der README den code getestet 
+
 ---
 
 #### 3. 💡 How did I overcome them?
@@ -452,6 +457,9 @@ Exkurs in Data Science durchgeführt: Daten bereinigt, sortiert und über die AP
 
 4. Neu und enheitlich Benennungssystem verwendet
 
+5. Dokumentation zu Markdown-Code-Highlighting durchgelesen und die Befehle gezielt für die Steuerung der API via Terminal dokumentiert.
+
+6. Geschaut ob Test Einträge fehlerfrei in der SQLite-Datenbank landen. 
 
 # 🎉 Congratulations! You did it! 🎓✨
 
